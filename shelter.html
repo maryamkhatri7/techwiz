@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Shelter | FurEver Care</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/aos.css"><!--AOS -->
+    <link rel="stylesheet" href="css/style.css">
+<style>
+/* ---------------- GLOBAL STYLES ---------------- */
+body {
+  font-family: 'Arial', sans-serif;
+  background: #fdf8f5;
+  margin: 0;
+  color: #01143C;
+}
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #01143C;
+}
+
+/* ---------------- BUTTON ---------------- */
+.btn-teal {
+  background-color: #01143C;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  padding: 0.5rem 1.5rem;
+  max-width: 200px;
+  width: auto;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(1,20,60,0.3);
+  margin: 0 5px;
+}
+.btn-teal:hover {
+  background-color: #C7A57A;
+  color: #01143C;
+  box-shadow: 0 8px 20px rgba(199,165,122,0.5);
+  transform: translateY(-2px);
+}
+
+/* ---------------- TEAM CARD / PET CARDS ---------------- */
+.team-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  box-shadow: 0 10px 20px rgba(196,155,99,0.2), 0 6px 6px rgba(0,0,0,0.1);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.team-card img {
+  width: 100%;
+  border-radius: 15px;
+  transition: transform 0.4s ease;
+}
+.team-card h5 {
+  color: #4a3f35;
+  margin-top: 1rem;
+  font-size: 1.25rem;
+}
+.team-card p {
+  color: #6c757d;
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+}
+.team-card a {
+  color: rgb(1,20,60);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+.team-card a:hover {
+  color: rgb(139,89,55);
+}
+
+/* Hover Effects */
+.team-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(196,155,99,0.15) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.team-card:hover::before {
+  opacity: 1;
+}
+.team-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 25px 35px rgba(196,155,99,0.4), 0 0 25px rgba(196,155,99,0.3);
+}
+.team-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ---------------- CONTACT FORM ---------------- */
+.contact-form {
+  background: #fff;
+  border-radius: 20px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(1,20,60,0.1);
+}
+.contact-form input, .contact-form textarea {
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  transition: all 0.3s ease;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+.contact-form input:focus, .contact-form textarea:focus {
+  border-color: #C7A57A;
+  box-shadow: 0 0 8px rgba(199,165,122,0.4);
+  outline: none;
+}
+
+/* ---------------- GOOGLE MAP ---------------- */
+.map-container iframe {
+  border-radius: 12px;
+  width: 100%;
+  height: 350px;
+  transition: all 0.3s ease;
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media(max-width:768px){
+  .team-card { padding: 1.5rem; }
+  .contact-form { padding: 1.5rem; }
+}
+@media(max-width:480px){
+  .section-title { font-size: 1.5rem; }
+  .team-card { padding: 1rem; }
+  .contact-form { padding: 1rem; }
+}
+
+/* ---------------- FILTER BUTTON CONTAINER ---------------- */
+.filter-container {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+</style>
+</head>
+<body>
+<div id="top-bar" style=" justify-content:space-between; padding:10px 20px; background:#F7E9D4;">
+<div id="user-welcome" style="    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+">Hi, <span id="user-name-display"></span>!
+    <small style="color: rgb(246,203,166); font-weight: bold;">(Visited <span id="visit-count"></span> times)</small>
+</div>
+<div id="clock-location">
+  <span id="clock"></span>
+  <span id="location"></span>
+</div>
+<!-- 
+<div id="clock-location">
+<span id="clock"></span> | <span id="location"></span>
+</div> -->
+</div>
+<nav class="navbar navbar-expand-xl sticky-top">
+<div class="container-fluid">
+<a class="navbar-brand d-flex align-items-center" href="index.html">
+<img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
+<span class="brand-text">FurEver Care</span>
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+<li class="nav-item"><a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a></li>
+<li class="nav-item"><a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a></li>
+<li class="nav-item"><a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a></li>
+<li class="nav-item"><a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a></li>
+<li class="nav-item"><a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<section class="container py-5">
+  <h2 class="section-title">Adopt a Pet</h2>
+  <div class="filter-container">
+    <button class="btn-teal filter-btn" data-filter="all">All</button>
+    <button class="btn-teal filter-btn" data-filter="dog">Dogs</button>
+    <button class="btn-teal filter-btn" data-filter="cat">Cats</button>
+    <button class="btn-teal filter-btn" data-filter="rabbit">Rabbits</button>
+  </div>
+  <div class="row g-4" id="adoption-gallery">
+    <!-- Dog -->
+    <div class="col-md-4 team-card" data-animal="dog">
+      <img src="images/dog.jpg" alt="Buddy">
+      <h5>Buddy</h5>
+      <p>Age: 2 years<br>Breed: Labrador<br>Friendly and playful dog ready for adoption.</p>
+    </div>
+    <!-- Cat -->
+    <div class="col-md-4 team-card" data-animal="cat">
+      <img src="images/cat1.jpg" alt="Whiskers">
+      <h5>Whiskers</h5>
+      <p>Age: 1 year<br>Breed: Siamese<br>Calm and affectionate cat for your loving home.</p>
+    </div>
+    <!-- Rabbit -->
+    <div class="col-md-4 team-card" data-animal="rabbit">
+      <img src="images/rabbit1.jpg" alt="Thumper">
+      <h5>Thumper</h5>
+      <p>Age: 6 months<br>Breed: Dutch Rabbit<br>Active and cute bunny for your family.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== Success Stories ======== -->
+<section class="container py-5">
+  <h2 class="section-title" id="suc">Success Stories</h2>
+  <div class="row g-4">
+    <div class="col-md-6 team-card">
+      <img src="https://placedog.net/400/300?id=10" alt="Happy Dog">
+      <p class="mt-3">Buddy found a loving home with the Johnson family and is thriving with daily walks and cuddles.</p>
+    </div>
+    <div class="col-md-6 team-card">
+      <img src="images/happy.webp" alt="Happy Cat">
+      <p class="mt-3">Whiskers is now living happily with Sarah, enjoying cozy naps and plenty of playtime.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== Event Announcements ======== -->
+<section class="container py-5" id="ev">
+  <h2 class="section-title">Upcoming Events</h2>
+  <div class="row g-4">
+    <div class="col-md-6 team-card">
+      <h5>Adoption Drive</h5>
+      <p>Date: 25th Sept 2025<br>Join us for our adoption drive and meet loving pets looking for forever homes!</p>
+    </div>
+    <div class="col-md-6 team-card">
+      <h5>Vaccination Camp</h5>
+      <p>Date: 30th Sept 2025<br>Free vaccination and health check-up for pets at our shelter.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======== Contact & Map ======== -->
+<section class="container py-5">
+  <h2 class="section-title">Contact Us</h2>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <form class="contact-form">
+        <h5 class="mb-3">Get in Touch</h5>
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="4" required></textarea>
+        <button type="submit" class="btn-teal">Send Message</button>
+      </form>
+    </div>
+    <div class="col-md-6">
+      <div class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0865719479035!2d-122.41941548468248!3d37.774929279759554!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064e456b0ff%3A0x4b4b888d6ee3a1f!2sSan+Francisco%2C+CA!5e0!3m2!1sen!2sus!4v1595910500000!5m2!1sen!2sus"
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======== JS for Filter Buttons ======== -->
+<script>
+const filterButtons = document.querySelectorAll('.filter-btn');
+const pets = document.querySelectorAll('#adoption-gallery .team-card');
+
+filterButtons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.getAttribute('data-filter');
+    pets.forEach(pet => {
+      pet.style.display = (filter === 'all' || pet.getAttribute('data-animal') === filter) ? 'block' : 'none';
+    });
+  });
+});
+</script>
+
+
+
+<!-- Footer -->
+<footer class="lux-footer mt-4">
+<div class="container text-center">
+<div class="footer-logo-wrap mb-2">
+<h3 class="footer-brand-text mt-1">FurEver Care</h3>
+<p class="footer-tagline">"Caring for pets, anytime, anywhere."</p>
+</div>
+<div class="row justify-content-center">
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Pet Care</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="owner.html">Pet Owner</a></li>
+<li><a href="vet.html">Veterinarians</a></li>
+<li><a href="shelter.html">Animal Shelter</a></li>
+<li><a href="products.html">Products</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Resources</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="emergency.html">Emergency</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#">Pet Tips</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Community</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="#">Blogs</a></li>
+<li><a href="#">Success Stories</a></li>
+<li><a href="#">Adoption Drives</a></li>
+<li><a href="#">Events</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Connect</h6>
+<div class="social-icons mb-2">
+<a href="https://facebook.com/furevercare" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="https://instagram.com/furevercare" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://twitter.com/furevercare" target="_blank"><i class="fab fa-twitter"></i></a>
+<a href="https://linkedin.com/company/furevercare" target="_blank"><i class="fab fa-linkedin"></i></a>
+</div>
+<p class="footer-contact">Email: <a href="mailto:info@furevercare.com">info@furevercare.com</a></p>
+<p class="footer-contact">Mon-Sat: 9am - 6pm</p>
+
+</div>
+</div>
+<div class="footer-bottom mt-2">
+<p>&copy; 2025 FurEver Care. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const nameEl = document.getElementById("user-name-display");
+  const visitCountEl = document.getElementById("visit-count");
+  const vetForm = document.getElementById("vetForm");
+
+  // ---------------- Load saved name + visits ----------------
+  let userName = localStorage.getItem("userFirstName") || "Guest";
+  let visits = parseInt(localStorage.getItem("visitCount")) || 0;
+
+  visits++;
+  localStorage.setItem("visitCount", visits);
+
+  if (nameEl) nameEl.textContent = userName;
+  if (visitCountEl) visitCountEl.textContent = visits;
+
+  // ---------------- When vet submits profile ----------------
+  if (vetForm) {
+    vetForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const name = document.getElementById("vetName").value.trim();
+      if (!name) return;
+
+      // Save vet name as main user name
+      localStorage.setItem("userFirstName", name);
+
+      // Update top bar immediately
+      if (nameEl) nameEl.textContent = name;
+
+      console.log(`Vet registered as: ${name}`);
+    });
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // ---------------- CLOCK & LOCATION ----------------
+  const clockEl = document.getElementById("clock");
+  const locEl = document.getElementById("location");
+
+  setInterval(() => {
+    const now = new Date();
+    if (clockEl) clockEl.textContent = now.toLocaleTimeString();
+  }, 1000);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        if (locEl) locEl.textContent = `Lat: ${pos.coords.latitude.toFixed(2)}, Long: ${pos.coords.longitude.toFixed(2)}`;
+      },
+      () => {
+        if (locEl) locEl.textContent = "Location unavailable";
+      }
+    );
+  }
+
+  
+});
+</script>
+
+<script>
+  AOS.init({
+    once: false,
+    duration: 800,
+  });
+</script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/aos.js"></script>
+</body>
+</html>

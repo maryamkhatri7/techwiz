@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emergency | FurEver Care</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/aos.css"><!--AOS -->
+    <link rel="stylesheet" href="css/style.css">
+<style>
+.service-card,
+.health-card {
+    padding: 2rem !important;
+}
+
+.owner-hero {
+    position: relative;
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    background: url('./images/emergency') center center/cover no-repeat;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.owner-hero::before,
+.owner-hero .overlay {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(1,20,60,0.4); /* dark overlay */
+    z-index: 1;
+}
+
+.owner-hero .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* ================= Emergency & First Aid Sections ================= */
+#emergency-services,
+#first-aid-tips {
+    padding: 60px 2rem;
+background-color: white;    border-radius: 20px;
+    margin-bottom: 2rem;
+    color: #fff;
+}
+
+#emergency-services .section-title,
+#first-aid-tips .section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #C7A57A;
+    position: relative;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#emergency-services .section-title::after,
+#first-aid-tips .section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #C7A57A, #fff);
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* Service & Health Cards */
+.service-card,
+.health-card {
+    background: linear-gradient(135deg, #0b1f46, #01143C);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    color: #fff;
+}
+
+.service-link:hover .service-card,
+.health-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35);
+}
+
+.service-card i{
+    color: #C7A57A;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.service-link:hover .service-card i,
+.health-card:hover {
+    transform: scale(1.3) rotate(10deg);
+    color: #fff;
+}
+
+.service-card h5,
+.health-card h5 {
+    font-weight: 700;
+    color: #C7A57A;
+    margin-bottom: 10px;
+}
+
+.service-card p,
+.health-card p {
+    font-size: 14px;
+    color: #e0d9c6;
+    line-height: 1.5;
+}
+
+/* Buttons */
+.btn-theme,
+.read-more-btn {
+background-color: #01143C;    color: #fff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-theme:hover,
+.read-more-btn:hover {
+    background-color:  #C7A57A;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+/* Animal Buttons */
+.animal-btn {
+    background-color:  #01143C;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 18px;
+    margin: 5px 5px 10px 0;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animal-btn:hover,
+.animal-btn.active {
+    transform: scale(1.15) translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background-color: #C7A57A;
+}
+
+/* ================= Emergency Contacts Table ================= */
+#emergency-contacts table {
+    border-radius: 12px;
+    overflow: hidden;
+    color: #fff;
+}
+
+#emergency-contacts th {
+    font-weight: 700;
+    color: #C7A57A;
+    background-color: #01143C;
+}
+
+#emergency-contacts td {
+    color: #e0d9c6;
+}
+
+/* Contact Info Block */
+.contact-info {
+    background: #0b1f46;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    color: navy!important;
+}
+
+.contact-info a {
+    color: #C7A57A;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+    #emergency-services .row,
+    #first-aid-tips .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+    #first-aid-tips .section-title,
+    #emergency-services .section-title {
+        font-size: 22px;
+    }
+}/* ================= Cards ================= */
+.service-card,
+.health-card {
+    background: #fff; /* White background */
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: #333; /* Dark text for visibility */
+}
+
+/* Hover effect */
+.service-link:hover .service-card,
+.health-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+}
+
+/* Card icons */
+.service-card i,
+.tip-icon {
+    color: #C7A57A;
+}
+
+/* Card title */
+.service-card h5,
+.health-card h5 {
+    font-weight: 700;
+    color: #01143C; /* dark title */
+    margin-bottom: 10px;
+}
+
+/* Card text */
+.service-card p,
+.health-card p {
+    font-size: 14px;
+    color: #555; /* grey for readability */
+    line-height: 1.5;
+}
+
+/* ================= Buttons ================= */
+.btn-theme,
+.read-more-btn {
+    background-color: #C7A57A; /* single color */
+    color: #fff;
+    border-radius: 25px;
+    padding: 10px 20px;
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-theme:hover,
+.read-more-btn:hover {
+    background-color: #a17b50; /* hover color */
+}
+
+/* Animal Buttons */
+.animal-btn {
+    background-color: #C7A57A;
+    color: #fff;
+    font-weight: 600;
+    padding: 10px 18px;
+    margin: 5px 5px 10px 0;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animal-btn:hover,
+.animal-btn.active {
+    transform: scale(1.15) translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    background-color: #a17b50;
+}
+
+/* ================= First Aid Card Images ================= */
+.health-card img {
+    height: 180px; /* equal height */
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* ================= Emergency & Vet Table ================= */
+#emergency-contacts table {
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+}
+
+#emergency-contacts th {
+    font-weight: 700;
+    color: #fff;
+    background-color: #01143C;
+}
+
+#emergency-contacts td {
+    color: #555; /* grey for readability */
+    background-color: #f8f8f8;
+}
+
+/* ================= Last Div (Contact Info / Footer) ================= */
+.contact-info {
+    background: #0b1f46; /* theme color */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    color: #fff;
+    padding: 30px;
+}
+
+.contact-info a {
+    color: #C7A57A;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* ================= Responsive ================= */
+@media (max-width: 768px) {
+    #emergency-services .row,
+    #first-aid-tips .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    #first-aid-tips .section-title,
+    #emergency-services .section-title {
+        font-size: 22px;
+    }
+
+    .health-card img {
+        height: 150px; /* smaller height on mobile */
+    }
+}
+.contact-form .btn-teal,
+.btn-theme,
+.read-more-btn,
+.animal-btn {
+    background-color: #01143C;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    transition: all 0.4s ease;
+    padding: 0.5rem 1.5rem;
+    max-width: 200px;
+    width: auto;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(1,20,60,0.3);
+}
+
+.contact-form .btn-teal:hover,
+.btn-theme:hover,
+.read-more-btn:hover,
+.animal-btn:hover,
+.animal-btn.active {
+    background-color: #C7A57A;
+    color: #01143C;
+    box-shadow: 0 8px 20px rgba(199,165,122,0.5);
+    transform: translateY(-2px);
+}
+
+.service-card,
+.health-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    color: #333;
+}
+
+.service-card:hover,
+.health-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    background-color: #f8f8f8;
+}
+
+.service-card i,
+.tip-icon {
+    color: #C7A57A;
+    transition: color 0.3s;
+}
+
+.service-card h5,
+.health-card h5 {
+    font-weight: 700;
+    color: #01143C;
+    margin-bottom: 10px;
+}
+
+.service-card p,
+.health-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.health-card img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: none;
+}
+
+</style>
+</head>
+<body>
+<div id="top-bar" style=" justify-content:space-between; padding:10px 20px; background:#F7E9D4;">
+<div id="user-welcome" style="    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+">Hi, <span id="user-name-display"></span>!
+    <small style="color: rgb(246,203,166); font-weight: bold;">(Visited <span id="visit-count"></span> times)</small>
+</div>
+<div id="clock-location">
+  <span id="clock"></span>
+  <span id="location"></span>
+</div>
+<!-- 
+<div id="clock-location">
+<span id="clock"></span> | <span id="location"></span>
+</div> -->
+</div>
+<nav class="navbar navbar-expand-xl sticky-top">
+<div class="container-fluid">
+<a class="navbar-brand d-flex align-items-center" href="index.html">
+<img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
+<span class="brand-text">FurEver Care</span>
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+<li class="nav-item"><a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a></li>
+<li class="nav-item"><a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a></li>
+<li class="nav-item"><a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a></li>
+<li class="nav-item"><a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a></li>
+<li class="nav-item"><a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+
+<section class="owner-hero text-center text-white d-flex align-items-center justify-content-center">
+    <div class="overlay"></div>
+    <div class="hero-bg"></div>
+    <div class="container">
+        <h1 class="display-4 fw-bold">Emergency & Vet Help</h1>
+        <p class="lead">Quick access to veterinarians and urgent care for your beloved pets.</p>
+    </div>
+</section>
+
+<section id="emergency-services" class="container my-5">
+    <h2 class="section-title text-center mb-4">Immediate Help</h2>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4 d-flex">
+            <a href="tel:+1234567890" class="service-link w-100" style="text-decoration: none;">
+                <div class="card service-card p-4 text-center">
+                    <i class="fas fa-phone fa-3x mb-3" style="color:#f5a623;" ></i>
+                    <h5>Call a Vet</h5>
+                    <p>Get instant advice from professional veterinarians to keep your pets healthy.</p>
+                    <button class="btn btn-theme mt-2">Call Now</button>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4 d-flex">
+            <a href="maps://veterinary-clinics" class="service-link w-100" style="text-decoration: none;">
+                <div class="card service-card p-4 text-center">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3" style="color:#f5a623;"></i>
+                    <h5>Nearest Vet Clinic</h5>
+                    <p>Find the closest veterinary clinic or emergency pet hospital.</p>
+                    <button class="btn btn-theme mt-2">Locate</button>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-6 col-lg-4 d-flex">
+            <a href="mailto:emergency@furevercare.com" class="service-link w-100"style="text-decoration: none;">
+                <div class="card service-card p-4 text-center">
+                    <i class="fas fa-envelope fa-3x mb-3" style="color:#f5a623;"></i>
+                    <h5>Email for Advice</h5>
+                    <p>Send details and photos for expert guidance on urgent care.</p>
+                    <button class="btn btn-theme mt-2">Email Now</button>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="first-aid-tips" class="container my-5">
+    <h2 class="section-title text-center mb-4">Pet First Aid Tips</h2>
+    <div class="text-center mb-4">
+        <button class="animal-btn" data-animal="all">All</button>
+        <button class="animal-btn" data-animal="dog">Dog</button>
+        <button class="animal-btn" data-animal="cat">Cat</button>
+        <button class="animal-btn" data-animal="bird">Bird</button>
+        <button class="animal-btn" data-animal="rabbit">Rabbit</button>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4" data-animal="dog">
+            <div class="card health-card p-4 text-center">
+                <img src="./images/choking-dog-memphis-emergency-vet.jpeg" alt="Choking" class="tip-icon mb-3">
+                <h5>Choking (Dog)</h5>
+                <p>Learn how to safely help a choking dog while waiting for professional help.</p>
+                <a href="https://www.redcross.org/take-a-class/resources/learn-pet-first-aid/dog/choking?srsltid=AfmBOooU1wKE2OocqaQFDFrxSqWdfAMC6VkhfKa-r4mZo1rIb9zZsQlZ" target="_blank" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-animal="cat">
+            <div class="card health-card p-4 text-center">
+                <img src="./images/cat-heat-stroke-houston-tx-scaled.jpg" alt="Heat Stroke" class="tip-icon mb-3">
+                <h5>Heat Stroke (Cat)</h5>
+                <p>Recognize signs of heat stroke in cats and take immediate action.</p>
+                <a href="https://www.petmd.com/cat/conditions/systemic/heatstroke-cats" target="_blank" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-animal="bird">
+            <div class="card health-card p-4 text-center">
+                <img src="./images/images.jpg" alt="Injury Care" class="tip-icon mb-3">
+                <h5>Injury Care (Bird)</h5>
+                <p>Steps to safely clean wounds and prevent infection in birds.</p>
+                <a href="https://www.instructables.com/Injured-Bird-What-To-Do-Step-by-Step/" target="_blank" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-animal="dog">
+            <div class="card health-card p-4 text-center">
+                <img src="./images/images (1).jpg" alt="Poisoning" class="tip-icon mb-3">
+                <h5>Poisoning (Dog)</h5>
+                <p>Immediate steps to take if your dog ingests something harmful.</p>
+                <a href="https://www.four-paws.org/our-stories/publications-guides/poisoned-dog-bait" target="_blank" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-animal="cat">
+            <div class="card health-card p-4 text-center">
+                <img src="./images/Cat-scratch.webp" alt="Cuts & Scratches" class="tip-icon mb-3">
+                <h5>Cuts & Scratches (Cat)</h5>
+                <p>How to clean minor wounds safely until you reach a vet.</p>
+                <a href="https://www.webmd.com/pets/cats/what-to-know-about-a-cat-bite-or-scratch" target="_blank" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4" data-animal="rabbit">
+            <div class="card health-card p-4 text-center">
+                <img src="./images/Trevor_Nebulising_003.jpg" alt="Respiratory Issues" class="tip-icon mb-3">
+                <h5>Respiratory Issues (Rabbit)</h5>
+                <p>Recognize early signs of breathing problems in rabbits.</p>
+                <a href="https://www.pdsa.org.uk/pet-help-and-advice/pet-health-hub/symptoms/respiratory-infections-snuffles-in-rabbits" target="_blank" class="read-more-btn">Read More</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="emergency-contacts" class="container my-5">
+    <h2 class="section-title text-center mb-4">Emergency & Vet Help</h2>
+    <div class="table-responsive fade-card">
+        <table class="table table-bordered text-center align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Service</th>
+                    <th>Contact Number</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>City Vet Clinic</td>
+                    <td>+92 300 1234567</td>
+                    <td>24/7 emergency service</td>
+                </tr>
+                <tr>
+                    <td>Animal Poison Helpline</td>
+                    <td>+92 301 7654321</td>
+                    <td>Immediate guidance for toxic ingestion</td>
+                </tr>
+                <tr>
+                    <td>Pet Ambulance</td>
+                    <td>+92 312 9988776</td>
+                    <td>Available in major areas</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="contact-info fade-card mt-4 p-4 rounded" style="background:#fff8f0; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
+        <h4 style="color: grey!important;">Contact Information</h4>
+        <p ><strong>Email:</strong> <a href="mailto:support@furevercare.com">support@furevercare.com</a></p>
+        <p><strong>Phone:</strong> <a href="tel:+923001122334">+92 300 1122334</a></p>
+        <p><strong>Address:</strong> 123 Pet Street, Lahore, Pakistan</p>
+    </div>
+</section>
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="lux-footer mt-4">
+<div class="container text-center">
+<div class="footer-logo-wrap mb-2">
+<h3 class="footer-brand-text mt-1">FurEver Care</h3>
+<p class="footer-tagline">"Caring for pets, anytime, anywhere."</p>
+</div>
+<div class="row justify-content-center">
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Pet Care</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="owner.html">Pet Owner</a></li>
+<li><a href="vet.html">Veterinarians</a></li>
+<li><a href="shelter.html">Animal Shelter</a></li>
+<li><a href="products.html">Products</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Resources</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="emergency.html">Emergency</a></li>
+<li><a href="about.html">About Us</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="#">Pet Tips</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Community</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="#">Blogs</a></li>
+<li><a href="#">Success Stories</a></li>
+<li><a href="#">Adoption Drives</a></li>
+<li><a href="#">Events</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Connect</h6>
+<div class="social-icons mb-2">
+<a href="https://facebook.com/furevercare" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="https://instagram.com/furevercare" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://twitter.com/furevercare" target="_blank"><i class="fab fa-twitter"></i></a>
+<a href="https://linkedin.com/company/furevercare" target="_blank"><i class="fab fa-linkedin"></i></a>
+</div>
+<p class="footer-contact">Email: <a href="mailto:info@furevercare.com">info@furevercare.com</a></p>
+<p class="footer-contact">Mon-Sat: 9am - 6pm</p>
+
+</div>
+</div>
+<div class="footer-bottom mt-2">
+<p>&copy; 2025 FurEver Care. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const nameEl = document.getElementById("user-name-display");
+  const visitCountEl = document.getElementById("visit-count");
+  const vetForm = document.getElementById("vetForm");
+
+  // ---------------- Load saved name + visits ----------------
+  let userName = localStorage.getItem("userFirstName") || "Guest";
+  let visits = parseInt(localStorage.getItem("visitCount")) || 0;
+
+  visits++;
+  localStorage.setItem("visitCount", visits);
+
+  if (nameEl) nameEl.textContent = userName;
+  if (visitCountEl) visitCountEl.textContent = visits;
+
+  // ---------------- When vet submits profile ----------------
+  if (vetForm) {
+    vetForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const name = document.getElementById("vetName").value.trim();
+      if (!name) return;
+
+      // Save vet name as main user name
+      localStorage.setItem("userFirstName", name);
+
+      // Update top bar immediately
+      if (nameEl) nameEl.textContent = name;
+
+      console.log(`Vet registered as: ${name}`);
+    });
+  }
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // ---------------- CLOCK & LOCATION ----------------
+  const clockEl = document.getElementById("clock");
+  const locEl = document.getElementById("location");
+
+  setInterval(() => {
+    const now = new Date();
+    if (clockEl) clockEl.textContent = now.toLocaleTimeString();
+  }, 1000);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        if (locEl) locEl.textContent = `Lat: ${pos.coords.latitude.toFixed(2)}, Long: ${pos.coords.longitude.toFixed(2)}`;
+      },
+      () => {
+        if (locEl) locEl.textContent = "Location unavailable";
+      }
+    );
+  }
+
+  
+});
+</script>
+
+
+<script>
+  // Select all animal buttons and all health cards
+  const animalButtons = document.querySelectorAll('.animal-btn');
+  const healthCards = document.querySelectorAll('.health-card');
+
+  animalButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      const selectedAnimal = button.getAttribute('data-animal');
+
+      healthCards.forEach(card => {
+        const cardAnimal = card.parentElement.getAttribute('data-animal');
+
+        // Show all if "all" is selected, otherwise filter by animal
+        if (selectedAnimal === 'all' || cardAnimal === selectedAnimal) {
+          card.parentElement.style.display = 'block';
+        } else {
+          card.parentElement.style.display = 'none';
+        }
+      });
+
+      // Optionally, add active class to highlight selected button
+      animalButtons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+    });
+  });
+</script>
+<script>
+  AOS.init({
+    once: false,
+    duration: 800,
+  });
+</script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/aos.js"></script>
+</body>
+</html>

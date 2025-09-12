@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinarians | HomeStyler</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/aos.css"><!--AOS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<style>
+    /* ---------------- GLOBAL ---------------- */
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: #2B2B2B;
+  background-color: #FBF6F4;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---------------- TOP BAR ---------------- */
+#top-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #01143C;
+  color: #fff;
+  font-weight: 500;
+  z-index: 1050;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+#top-bar span { font-size: clamp(0.7rem, 1.1vw, 0.85rem); }
+
+/* ---------------- HERO ---------------- */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(rgba(1,20,60,0.6), rgba(1,20,60,0.6)), url('images/herosection.jpg') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 6vw, 4rem);
+  font-weight: 700;
+  color: #C7A57A;
+  text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+  animation: slideDown 1.5s ease;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin-top: 1rem;
+  color: #FBF6F4;
+  animation: fadeIn 2s ease;
+}.btn-teal {
+  background-color: #008080;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  padding: 0.8rem 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 15px rgba(0, 128, 128, 0.3);
+}
+
+.btn-teal::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  transform: skewX(-20deg);
+  transition: all 0.5s ease;
+}
+
+.btn-teal:hover::after {
+  left: 125%;
+}
+
+.btn-teal:hover {
+  background-color: #006666;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 102, 102, 0.5);
+  color: #fff;
+}
+
+/* ---------------- FORM ---------------- */
+#vetFormSection {
+  padding: 3rem 1rem;
+}
+#vetForm input {
+  transition: all 0.3s ease;
+}
+#vetForm input:focus {
+  border-color: #C7A57A;
+  box-shadow: 0 0 10px rgba(199,165,122,0.5);
+}
+.btn-teal {
+  background: #01143C;
+  color: #fff;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+.btn-teal:hover {
+  background: #C7A57A;
+  color: #01143C;
+  transform: scale(1.05);
+}
+
+/* ---------------- VET PROFILE ---------------- */
+#vetProfile {
+  padding: 3rem 1rem;
+}
+.profile-card {
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.profile-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+}
+.profile-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #C7A57A;
+  transition: transform 0.3s ease;
+}
+.profile-img:hover { transform: scale(1.08); }
+
+/* ---------------- PET GALLERY ---------------- */
+.container .row.scrollable {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  scroll-behavior: smooth;
+}
+.gallery-card {
+  min-width: 300px;
+  position: relative;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.4s ease;
+}
+.gallery-card img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.gallery-card:hover img { transform: scale(1.1); }
+.overlay-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(1,20,60,0.8);
+  color: #C7A57A;
+  font-size: 0.9rem;
+  padding: 10px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  text-align: center;
+}
+.gallery-card:hover .overlay-text { opacity: 1; }
+
+/* ---------------- FAQ ---------------- */
+.faq-item {
+  background: #FFF9F0;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem;
+}
+.faq-item:hover { background: #FFE7B2; transform: translateY(-3px); }
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.faq-answer {
+  display: none;
+  font-size: 0.95rem;
+  margin-top: 10px;
+  color: #2B2B2B;
+}
+.faq-item.active .faq-answer { display: block; }
+
+/* ---------------- ANIMATIONS ---------------- */
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+  .hero-title { font-size: 1.8rem; }
+  .hero-sub { font-size: 0.9rem; }
+  .btn-hero { width: 100%; margin-bottom: 0.5rem; }
+  .container .row.scrollable { overflow-x: scroll; }
+}
+#vetFormSection .form-control {
+  transition: all 0.3s ease;
+  border-radius: 10px;
+  padding: 0.6rem 0.75rem;
+}
+#vetFormSection .form-control:focus {
+  border-color: #C7A57A;
+  box-shadow: 0 0 10px rgba(199,165,122,0.3);
+}
+#vetFormSection .input-group-text {
+  background-color: #01143C;
+  color: #fff;
+  border-radius: 10px 0 0 10px;
+}
+#vetFormSection .btn-teal {
+  border-radius: 50px;
+  transition: all 0.4s ease;
+  background-color: #01143C;
+}
+#vetFormSection .btn-teal:hover {
+  background-color: #C7A57A;
+  color: #01143C;
+  transform: scale(1.05);
+}
+.section-tagline {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-style: italic;
+}
+/* 
+.image-track {
+  display: flex;
+  gap: 1.5rem;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  will-change: transform;
+  padding: 0 2rem;
+  transition: transform 0.3s ease-out;
+}
+
+.image {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 16px;
+  user-select: none;
+  pointer-events: none;
+} */
+.faq-item {
+  background: #FFF9F0;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 1rem 1.2rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.faq-item:hover {
+  background: #FFE7B2;
+  transform: translateY(-3px);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #4a3f35;
+}
+
+.faq-question i {
+  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 1.2rem;
+  color: #c49b63;
+}
+
+.faq-item.active .faq-question i {
+  transform: rotate(45deg); /* turns + into x (close) */
+  color: #8b5e34;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  font-size: 0.95rem;
+  margin-top: 8px;
+  color:rgb(128,78,44);
+  line-height: 1.5;
+  font-weight: bold;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px; /* enough to expand fully */
+  opacity: 1;
+}
+/* ---------------- GLOBAL RESPONSIVE ---------------- */
+/* ---------------- HERO ---------------- */
+.hero-section {
+  min-height: 90vh;
+  padding: 2rem 1rem;
+}
+.hero-title { font-size: clamp(2rem, 6vw, 4rem); }
+.hero-sub { font-size: clamp(1rem, 2.5vw, 1.5rem); }
+.btn-teal { font-size: clamp(0.9rem, 1.2vw, 1.1rem); padding: clamp(0.6rem,1vw,0.8rem) clamp(1.5rem,3vw,2rem); }
+
+/* ---------------- VET FORM ---------------- */
+#vetFormSection .form-control, 
+#vetFormSection select,
+#vetFormSection .input-group-text {
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  padding: 0.5rem 0.75rem;
+}
+#vetFormSection .row.g-3 > [class*="col-"] {
+  margin-bottom: 1rem;
+}
+
+/* ---------------- VET PROFILE ---------------- */
+.profile-card { flex-direction: column; }
+.profile-card .col-md-4, .profile-card .col-md-8 {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+}
+.profile-img { width: 140px; height: 140px; margin: 0 auto; }
+
+/* ---------------- PET GALLERY ---------------- */
+.image-track {
+  padding: 0 1rem;
+  gap: 1rem;
+}
+/* .image { width: clamp(180px, 20vw, 300px); height: clamp(220px,30vw,400px); } */
+
+/* ---------------- FAQ ---------------- */
+.faq-item { padding: 0.8rem 1rem; }
+.faq-question h5 { font-size: clamp(0.9rem,1.2vw,1.1rem); }
+.faq-answer { font-size: clamp(0.8rem, 1vw, 0.95rem); }
+
+/* ---------------- RESPONSIVE MEDIA ---------------- */
+@media (max-width: 1200px) {
+  .navbar .navbar-nav { gap: 0.5rem; }
+}
+
+@media (max-width: 992px) {
+  .hero-section { padding: 2rem; }
+  .hero-title { font-size: clamp(1.8rem,5vw,3rem); }
+  .hero-sub { font-size: clamp(0.9rem,2vw,1.2rem); }
+  .btn-teal { padding: 0.6rem 1.5rem; }
+}
+
+@media (max-width: 768px) {
+  .profile-card { flex-direction: column; }
+  .profile-card .col-md-4, .profile-card .col-md-8 { width: 100%; text-align: center; }
+  .image-track { gap: 0.8rem; padding: 0 0.5rem; }
+  .image { width: clamp(150px,25vw,250px); height: clamp(180px,30vw,300px); }
+  .faq-item { padding: 0.7rem 0.8rem; }
+}
+
+@media (max-width: 576px) {
+  .hero-title { font-size: clamp(1.5rem,6vw,2.2rem); }
+  .hero-sub { font-size: clamp(0.8rem,2.5vw,1rem); }
+  .btn-teal { width: 100%; padding: 0.6rem; }
+  #vetFormSection .form-control { font-size: 0.85rem; }
+  .image-track { gap: 0.5rem; }
+  .image { width: clamp(120px,40vw,200px); height: clamp(140px,45vw,220px); }
+  .faq-question h5 { font-size: 1rem; }
+}
+.hero-section {
+  min-height: 90vh;
+  padding: 2rem 1rem;
+  text-align: center;
+}
+.hero-title {
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.2;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  margin-top: 1rem;
+}
+.btn-teal {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  padding: clamp(0.6rem, 1vw, 0.8rem) clamp(1.5rem, 3vw, 2rem);
+  width: auto;  /* prevents full width on small screens */
+}
+@media (max-width: 576px) {
+  .btn-teal { width: 100%; }
+}
+.section-title {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  text-align: center;
+}
+.section-tagline {
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+#vetFormSection .form-control,
+#vetFormSection select,
+#vetFormSection .input-group-text {
+  font-size: clamp(0.8rem, 1vw, 1rem);
+  padding: 0.5rem 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+#vetFormSection .btn-teal {
+  width: auto;
+  max-width: 200px; /* optional to control large buttons */
+}
+#vetFormSection .form-label {
+  font-size: clamp(0.85rem, 1vw, 1rem);
+}
+.marquee .image-track {
+  gap: 0.5rem;
+  padding: 0 1rem;
+}
+.image-track .image {
+  width: clamp(120px, 25vw, 300px);
+  height: clamp(140px, 35vw, 400px);
+  object-fit: cover;
+  border-radius: 12px;
+}
+/* Ensure input group stays in one line */
+#vetFormSection .input-group {
+  display: flex;
+  flex-wrap: nowrap;      /* prevent wrapping */
+  width: 100%;
+}
+
+#vetFormSection .input-group-text {
+  flex: 0 0 auto;         /* don't grow */
+  width: auto;            /* just enough for content */
+}
+
+#vetFormSection .input-group input.form-control {
+  flex: 1 1 auto;         /* input takes remaining space */
+  min-width: 0;           /* allow shrinking if needed */
+}
+/* Marquee text */
+.marquee-text {
+  text-align: center;
+  font-size: clamp(1rem, 2vw, 1.5rem); /* responsive font size */
+  margin-bottom: 1.5rem;               /* gap between text and images */
+  font-weight: bold;
+  color: #4a3f35;
+}
+
+/* Container for scrolling images */
+.image-track {
+  display: flex;
+  gap: 2vw;           /* responsive gap */
+  padding: 0 2vw;     /* spacing on sides */
+  overflow-x: auto;   /* allow horizontal scroll on small screens */
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Each image */
+.image {
+  flex: 0 0 auto;          /* prevent shrinking */
+  width: clamp(150px, 20vw, 300px);  /* responsive width */
+  height: auto;             /* maintain aspect ratio */
+  max-height: 400px;        /* optional max height */
+  object-fit: cover;
+  border-radius: 16px;
+  user-select: none;
+  pointer-events: none;
+}
+
+/* Optional: hide scrollbar for cleaner look */
+.image-track::-webkit-scrollbar {
+  display: none;
+}
+.image-track {
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .image-track {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+  .image {
+    width: clamp(120px, 35vw, 200px);
+    max-height: 300px;
+  }
+}
+
+</style>
+<body>
+<div id="top-bar" style=" justify-content:space-between; padding:10px 20px; background:#F7E9D4;">
+<div id="user-welcome" style="    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
+">Hi, <span id="user-name-display"></span>!
+    <small style="color: rgb(246,203,166); font-weight: bold;">(Visited <span id="visit-count"></span> times)</small>
+</div>
+<div id="clock-location">
+  <span id="clock"></span>
+  <span id="location"></span>
+</div>
+<!-- 
+<div id="clock-location">
+<span id="clock"></span> | <span id="location"></span>
+</div> -->
+</div>
+<nav class="navbar navbar-expand-xl sticky-top">
+<div class="container-fluid">
+<a class="navbar-brand d-flex align-items-center" href="index.html">
+<img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
+<span class="brand-text">FurEver Care</span>
+</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
+<ul class="navbar-nav ms-auto">
+<li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
+<li class="nav-item"><a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a></li>
+<li class="nav-item"><a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a></li>
+<li class="nav-item"><a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a></li>
+<li class="nav-item"><a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a></li>
+<li class="nav-item"><a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a></li>
+<li class="nav-item"><a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a></li>
+</ul>
+</div>
+</div>
+</nav>
+<script>
+const currentPage = window.location.pathname.split("/").pop();
+document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
+    if(link.getAttribute("href") === currentPage){ link.classList.add("active"); }
+});
+</script>
+
+<section class="hero-section text-center text-white d-flex align-items-center">
+  <div class="container">
+    <h1 class="fw-bold display-4 hero-title">“𝓒𝓪𝓻𝓲𝓷𝓰 𝓯𝓸𝓻 𝓨𝓸𝓾𝓻 𝓟𝓮𝓽𝓼 𝓛𝓲𝓴𝓮 𝓕𝓪𝓶𝓲𝓵𝔂”</h1>
+    <p class="lead mt-3">
+  𝑪𝒂𝒓𝒊𝒏𝒈 𝒇𝒐𝒓 𝒚𝒐𝒖𝒓 𝒑𝒆𝒕𝒔 𝒘𝒊𝒕𝒉 <span class="text-gold"> 𝒍𝒐𝒗𝒆, </span>  𝒑𝒓𝒐𝒗𝒊𝒅𝒊𝒏𝒈 <span class="text-gold">𝒆𝒙𝒑𝒆𝒓𝒕 𝒗𝒆𝒕𝒆𝒓𝒊𝒏𝒂𝒓𝒚 𝒄𝒂𝒓𝒆</span>  𝒕𝒐 𝒌𝒆𝒆𝒑 𝒕𝒉𝒆𝒎 <span class="text-gold"> 𝒉𝒆𝒂𝒍𝒕𝒉𝒚 𝒂𝒏𝒅 𝒉𝒂𝒑𝒑𝒚.</span>.
+</p>
+<p class="text-center mt-3" style="font-size:1.1rem; color:white;">
+𝑊𝑎𝑛𝑡 𝑡𝑜 𝑠ℎ𝑎𝑟𝑒 𝑦𝑜𝑢𝑟 𝑒𝑥𝑝𝑒𝑟𝑡𝑖𝑠𝑒? 𝐴𝑑𝑑 𝑦𝑜𝑢𝑟 𝑝𝑟𝑜𝑓𝑖𝑙𝑒 𝑎𝑠 𝑎 𝑣𝑒𝑡𝑒𝑟𝑖𝑛𝑎𝑟𝑖𝑎𝑛 𝑏𝑒𝑙𝑜𝑤!</p>
+<a href="vet.html" class="btn btn-teal mt-4 px-4 py-2">Register Now</a>
+
+  </div>
+</section>
+
+<!-- <section class="container my-5" id="vetFormSection">
+  <h2 class="text-center mb-4 section-title">Register Veterinarian</h2>
+  <form id="vetForm" class="p-4 rounded shadow bg-nude">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <label class="form-label">Full Name</label>
+        <input type="text" class="form-control" id="vetName" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Specialization</label>
+        <input type="text" class="form-control" id="vetSpec" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Contact Info</label>
+        <input type="text" class="form-control" id="vetContact" required>
+      </div>
+      <div class="col-md-6">
+        <label class="form-label">Profile Image URL</label>
+        <input type="url" class="form-control" id="vetImage" required>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-teal px-4">Submit</button>
+    </div>
+  </form>
+</section> -->
+<section class="container my-5 " id="vetFormSection">
+  <form id="vetForm" class="p-4 rounded shadow bg-nude ">
+    <h2 class="text-center mb-4 section-title" style="color:#01143C;">Register Veterinarian</h2>
+
+    <div class="row g-3">
+      <!-- Full Name -->
+      <div class="col-md-6">
+        <label class="form-label text-start">Full Name</label>
+        <input type="text" class="form-control" id="vetName" placeholder="John Doe" required pattern="[A-Za-z\s]{3,50}" title="3-50 letters only">
+      </div>
+      <!-- Specialization -->
+      <div class="col-md-6">
+        <label class="form-label">Specialization</label>
+        <select class="form-control" id="vetSpec" required>
+          <option value="" disabled selected>Select Specialization</option>
+          <option>Small Animals</option>
+          <option>Large Animals</option>
+          <option>Exotic Pets</option>
+          <option>Equine</option>
+          <option>Dermatology</option>
+          <option>Cardiology</option>
+          <option>General Surgery</option>
+        </select>
+      </div>
+      <!-- Contact Info -->
+      <div class="col-md-6">
+        <label class="form-label">Contact Info</label>
+        <div class="input-group">
+          <span class="input-group-text">+92</span>
+          <input type="text" class="form-control" id="vetContact" placeholder="3001234567" pattern="[0-9]{7,12}" title="Enter 7 to 12 digit number" required>
+        </div>
+      </div>
+      <!-- File Upload -->
+      <div class="col-md-6">
+        <label class="form-label">Profile Image / CV</label>
+        <input type="file" class="form-control" id="vetFile" accept=".jpg,.jpeg,.png">
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <button type="submit" class="btn btn-teal px-4 py-2">Submit</button>
+    </div>
+  </form>
+</section>
+
+<section id="vetProfile" class="container my-5 d-none">
+  <h2 class="text-center mb-4 section-title">Veterinarian Profile</h2>
+  <div class="card shadow-lg profile-card">
+    <div class="row g-0">
+      <div class="col-md-4 text-center bg-navy text-white d-flex flex-column justify-content-center align-items-center p-4">
+        <img id="displayImage" src="" class="rounded-circle mb-3 profile-img" alt="Vet Image">
+        <h4 id="displayName"></h4>
+        <p><i class="fa-solid fa-stethoscope text-gold"></i> <span id="displaySpec"></span></p>
+      </div>
+      <div class="col-md-8 p-4">
+        <h5 class="fw-bold"><i class="fa-solid fa-envelope text-gold"></i> Contact Info:</h5>
+        <p id="displayContact"></p>
+        <hr>
+        <h5 class="fw-bold"><i class="fa-solid fa-calendar-check text-gold"></i> Appointment Slots</h5>
+        <table class="table table-hover mt-2">
+          <thead class="table-dark">
+            <tr>
+              <th>Time</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>10:00 - 11:00</td><td><span class="badge bg-danger">Booked</span></td></tr>
+            <tr><td>11:00 - 12:00</td><td><span class="badge bg-success">Available</span></td></tr>
+            <tr><td>12:00 - 01:00</td><td><span class="badge bg-danger">Booked</span></td></tr>
+            <tr><td>02:00 - 03:00</td><td><span class="badge bg-success">Available</span></td></tr>
+          </tbody>
+        </table>
+
+        <h5 class="fw-bold mt-4"><i class="fa-solid fa-notes-medical text-gold"></i> Sample Pet Medical Histories</h5>
+        <div class="row mt-2">
+          <div class="col-md-4">
+            <div class="card case-card shadow-sm">
+              <div class="card-body">
+                <h6 class="fw-bold">Case 1: Labrador</h6>
+                <p>Annual vaccination completed, healthy weight maintained.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card case-card shadow-sm">
+              <div class="card-body">
+                <h6 class="fw-bold">Case 2: Persian Cat</h6>
+                <p>Dental cleaning done, follow-up next month. Cat healthy and active.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="card case-card shadow-sm">
+              <div class="card-body">
+                <h6 class="fw-bold">Case 3: Rabbit</h6>
+                <p>Treated ear infection successfully, stable condition.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div style="height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; background:#f8f6f3;" class="mb-5 marquee">
+
+  <!-- Heading + tagline -->
+  <h2 class="section-title">🐾 Pet Gallery</h2>
+  <p class="section-tagline">Meet our furry, feathery, and fluffy friends 🐶🐱🐰🐦</p>
+
+  <marquee behavior="scroll" direction="left" style="font-size:1rem; color:#4a3f35; margin:1rem 0;">
+    Nature & Pets are a blessing 🌿✨
+  </marquee>
+
+  <div class="image-track" id="petTrack">
+    <img class="image" src="images/p1" draggable="false" alt="Happy Dog">
+    <img class="image" src="images/p2" draggable="false" alt="Fluffy Cat">
+    <img class="image" src="images/p4" draggable="false" alt="Cute Puppy">
+    <img class="image" src="images/p5" draggable="false" alt="Sleeping Cat">
+    <img class="image" src="images/p6" draggable="false" alt="Playful Bunny">
+    <img class="image" src="images/p7" draggable="false" alt="Colorful Parrot">
+    <!-- <img class="image" src="images/p8" draggable="false" alt="Chubby Hamster"> -->
+    <img class="image" src="images/p9" draggable="false" alt="Happy Dog">
+    <img class="image" src="images/p10" draggable="false" alt="Cute Kitten">
+  </div>
+</div>
+
+<section class="container my-5">
+  <h2 class="text-center mb-4 section-title with-line mt-5" id="faq">FAQs</h2>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h5>What services do you provide?</h5>
+      <i class="fa fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      We provide vaccinations, grooming, surgery, and general checkups for pets.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h5>Do you offer emergency care?</h5>
+      <i class="fa fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      Yes, 24/7 emergency care is available at our clinic.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question">
+      <h5>How do I book an appointment?</h5>
+      <i class="fa fa-plus"></i>
+    </div>
+    <div class="faq-answer">
+      You can call us directly or use our online booking system.
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="lux-footer mt-4">
+<div class="container text-center">
+<div class="footer-logo-wrap mb-2">
+<h3 class="footer-brand-text mt-1">FurEver Care</h3>
+<p class="footer-tagline">"Caring for pets, anytime, anywhere."</p>
+</div>
+<div class="row justify-content-center">
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Pet Care</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="owner.html">Pet Owner</a></li>
+<li><a href="vet.html">Veterinarians</a></li>
+<li><a href="shelter.html">Animal Shelter</a></li>
+<li><a href="products.html">Products</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Resources</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="emergency.html">Emergency</a></li>
+<li><a href="index.html#about">About Us</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="emergency.html#first-aid-tips">Pet Tips</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Community</h6>
+<ul class="list-unstyled footer-links">
+<li><a href="vet.html#faq">Blogs</a></li>
+<li><a href="shelter.html#suc">Success Stories</a></li>
+<li><a href="contact.html">Adoption Drives</a></li>
+<li><a href="shelter.html#ev">Events</a></li>
+</ul>
+</div>
+<div class="col-md-3 col-6 mb-3">
+<h6 class="footer-heading">Connect</h6>
+<div class="social-icons mb-2">
+<a href="https://facebook.com/furevercare" target="_blank"><i class="fab fa-facebook"></i></a>
+<a href="https://instagram.com/furevercare" target="_blank"><i class="fab fa-instagram"></i></a>
+<a href="https://twitter.com/furevercare" target="_blank"><i class="fab fa-twitter"></i></a>
+<a href="https://linkedin.com/company/furevercare" target="_blank"><i class="fab fa-linkedin"></i></a>
+</div>
+<p class="footer-contact">Email: <a href="mailto:info@furevercare.com">info@furevercare.com</a></p>
+<p class="footer-contact">Mon-Sat: 9am - 6pm</p>
+
+</div>
+</div>
+<div class="footer-bottom mt-2">
+<p>&copy; 2025 FurEver Care. All Rights Reserved.</p>
+</div>
+</div>
+</footer>
+<script>
+  AOS.init({
+    once: false,
+    duration: 800,
+  });
+</script>
+<script src="js/bootstrap.bundle.min.js"></script>
+<script src="js/aos.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  // ---------------- CLOCK & LOCATION ----------------
+  const clockEl = document.getElementById("clock");
+  const locEl = document.getElementById("location");
+
+  setInterval(() => {
+    const now = new Date();
+    if (clockEl) clockEl.textContent = now.toLocaleTimeString();
+  }, 1000);
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      pos => {
+        if (locEl) locEl.textContent = `Lat: ${pos.coords.latitude.toFixed(2)}, Long: ${pos.coords.longitude.toFixed(2)}`;
+      },
+      () => {
+        if (locEl) locEl.textContent = "Location unavailable";
+      }
+    );
+  }
+
+  // ---------------- VET FORM SUBMISSION ----------------
+  const vetForm = document.getElementById("vetForm");
+  vetForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const name = document.getElementById("vetName").value.trim();
+    const spec = document.getElementById("vetSpec").value;
+    const contact = document.getElementById("vetContact").value.trim();
+    const fileInput = document.getElementById("vetFile").files[0];
+
+    if (!fileInput) return; // require file upload
+
+    // ---------------- DISPLAY PROFILE ----------------
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      document.getElementById("displayName").textContent = name;
+      document.getElementById("displaySpec").textContent = spec;
+      document.getElementById("displayContact").textContent = "+92" + contact;
+      document.getElementById("displayImage").src = event.target.result;
+
+      document.getElementById("vetFormSection").classList.add("d-none");
+      document.getElementById("vetProfile").classList.remove("d-none");
+    };
+    reader.readAsDataURL(fileInput);
+
+    vetForm.reset();
+  });
+
+  // ---------------- FAQ TOGGLE ----------------
+  document.querySelectorAll(".faq-item").forEach(faq => {
+    faq.addEventListener("click", () => {
+      faq.classList.toggle("active");
+      const icon = faq.querySelector("i");
+      const answer = faq.querySelector(".faq-answer");
+      answer.style.display = answer.style.display === "block" ? "none" : "block";
+      icon.classList.toggle("fa-minus");
+      icon.classList.toggle("text-gold");
+    });
+  });
+});
+</script>
+<!-- <script>
+document.addEventListener("DOMContentLoaded", () => {
+//   const userForm = document.getElementById("user-form");
+//   const formContainer = document.getElementById("form-container");
+//   const topBarName = document.getElementById("user-name-display");
+//   const visitCountEl = document.getElementById("visit-count");
+
+//   // ------------------ Load from localStorage ------------------
+//   let userName = localStorage.getItem("userName");
+//   let visitCount = localStorage.getItem("visitCount");
+
+//   if (userName) {
+//     topBarName.textContent = userName;
+//   } else {
+//     topBarName.textContent = "Guest";
+//   }
+
+//   visitCount = visitCount ? parseInt(visitCount) + 1 : 1;
+//   localStorage.setItem("visitCount", visitCount);
+//   visitCountEl.textContent = visitCount;
+
+  // ------------------ Handle Form Submission ------------------
+  userForm.addEventListener("submit", e => {
+    e.preventDefault();
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const userType = userForm.querySelector('input[name="userType"]:checked').value;
+
+    if (!firstName) return;
+
+    // Save to localStorage
+    localStorage.setItem("userName", firstName);
+
+    // Update top bar
+    topBarName.textContent = firstName;
+
+    // Hide form and show main content
+    formContainer.style.display = "none";
+
+    // You could also customize greeting based on userType if needed
+    console.log(`${firstName} entered as ${userType}`);
+  });
+
+  // ------------------ Clock ------------------
+  const clockEl = document.getElementById("clock");
+  setInterval(() => {
+    const now = new Date();
+    if(clockEl) clockEl.textContent = now.toLocaleTimeString();
+  }, 1000);
+
+  // ------------------ Location ------------------
+  const locEl = document.getElementById("location");
+  if(navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      if(locEl) locEl.textContent = `Lat: ${pos.coords.latitude.toFixed(2)}, Long: ${pos.coords.longitude.toFixed(2)}`;
+    }, ()=>{ if(locEl) locEl.textContent="Location unavailable"; });
+  }
+});
+</script> -->
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const nameEl = document.getElementById("user-name-display");
+  const visitCountEl = document.getElementById("visit-count");
+  const vetForm = document.getElementById("vetForm");
+
+  // ---------------- Load saved name + visits ----------------
+  let userName = localStorage.getItem("userFirstName") || "Guest";
+  let visits = parseInt(localStorage.getItem("visitCount")) || 0;
+
+  visits++;
+  localStorage.setItem("visitCount", visits);
+
+  if (nameEl) nameEl.textContent = userName;
+  if (visitCountEl) visitCountEl.textContent = visits;
+
+  // ---------------- When vet submits profile ----------------
+  if (vetForm) {
+    vetForm.addEventListener("submit", e => {
+      e.preventDefault();
+
+      const name = document.getElementById("vetName").value.trim();
+      if (!name) return;
+
+      // Save vet name as main user name
+      localStorage.setItem("userFirstName", name);
+
+      // Update top bar immediately
+      if (nameEl) nameEl.textContent = name;
+
+      console.log(`Vet registered as: ${name}`);
+    });
+  }
+});
+</script>
+<!-- marqueee -->
+<script>
+const track = document.getElementById("petTrack");
+
+let mouseDownAt = 0;
+let prevPercentage = 0;
+let percentage = 0;
+
+window.addEventListener("mousedown", e => {
+  mouseDownAt = e.clientX;
+});
+
+window.addEventListener("mouseup", () => {
+  mouseDownAt = 0;
+  prevPercentage = percentage;
+});
+
+window.addEventListener("mousemove", e => {
+  if (mouseDownAt === 0) return;
+
+  const mouseDelta = e.clientX - mouseDownAt,
+        maxDelta = window.innerWidth / 2;
+
+  let nextPercentage = prevPercentage + (mouseDelta / maxDelta) * 100;
+  nextPercentage = Math.max(Math.min(nextPercentage, 0), -100);
+
+  percentage = nextPercentage;
+
+  track.style.transform = `translate(${percentage}%, -50%)`;
+  track.animate(
+    { transform: `translate(${percentage}%, -50%)` },
+    { duration: 1200, fill: "forwards" }
+  );
+});
+</script>
+
+</body>
+</html>
