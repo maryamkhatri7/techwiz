@@ -8,41 +8,8 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/aos.css"><!--AOS -->
     <link rel="stylesheet" href="css/style.css">
-<style>
-.service-card,
-.health-card {
-    padding: 2rem !important;
-}
+<!-- <style>
 
-.owner-hero {
-    position: relative;
-    height: 80vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: #fff;
-    background: url('./images/emergency') center center/cover no-repeat;
-    overflow: hidden;
-    margin-top: 20px;
-}
-
-.owner-hero::before,
-.owner-hero .overlay {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(1,20,60,0.4); /* dark overlay */
-    z-index: 1;
-}
-
-.owner-hero .container {
-    position: relative;
-    z-index: 2;
-}
 
 /* ================= Emergency & First Aid Sections ================= */
 #emergency-services,
@@ -80,6 +47,7 @@ background-color: white;    border-radius: 20px;
 .health-card {
     background: linear-gradient(135deg, #0b1f46, #01143C);
     border-radius: 20px;
+    padding: 2rem !important;
     padding: 25px;
     text-align: center;
     box-shadow: 0 8px 25px rgba(0,0,0,0.25);
@@ -409,54 +377,452 @@ background-color: #01143C;    color: #fff;
     border-radius: 15px;
     transition: none;
 }
+.hero {
+    position: relative;
+    padding: 120px 0;
+    background: linear-gradient(135deg, #fce9d4, #fff7f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
 
-</style>
+.hero-content {
+    max-width: 750px;
+    margin-left: 130px;
+    margin-top: 30px;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin: 20px 0 35px;
+    color: #555;
+}
+
+.hero-buttons .btn-primary {
+    display: inline-block;
+    padding: 12px 28px;
+    background: rgba(1, 20, 60, 0.906);
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+        border: 2px solid rgb(1,20,60);
+    margin-right: 15px;
+    transition: 0.3s ease;
+}
+
+.hero-buttons .btn-primary:hover {
+    background: rgb(1,20,60);
+}
+
+.hero-buttons .btn-outline {
+    display: inline-block;
+    padding: 12px 28px;
+    border: 2px solid rgb(1,20,60);
+    color: rgb(1,20,60);
+    font-size: 18px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.hero-buttons .btn-outline:hover {
+    background: rgb(1,20,60);
+    color: white;
+}
+
+.hero-image img {
+    width: 480px;
+    margin-right: 80px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Floating decorative shapes */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 127, 80, 0.25);
+    animation: float 5s infinite ease-in-out;
+}
+
+.shape1 {
+    width: 160px;
+    height: 160px;
+    top: -40px;
+    left: -30px;
+}
+
+.shape2 {
+    width: 120px;
+    height: 120px;
+    bottom: 60px;
+    right: 50px;
+}
+
+.shape3 {
+    width: 70px;
+    height: 70px;
+    top: 150px;
+    right: 200px;
+}
+
+/* Mobile Responsive */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 100px 20px;
+    }
+
+    .hero-content {
+        margin: 0;
+    }
+
+    .hero-image img {
+        margin: 40px 0 0;
+        width: 360px;
+    }
+}
+
+</style> -->
+<style>
+/* ================= Emergency & First Aid Sections ================= */
+#emergency-services,
+#first-aid-tips {
+    padding: 60px 2rem;
+    background-color: white;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    color: #333; /* FIXED: text visible */
+}
+
+.section-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: #C7A57A;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #C7A57A, #fff);
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+
+/* ================= Cards ================= */
+.service-card,
+.health-card {
+    background: #fff;
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+    color: #333;
+}
+
+.service-card:hover,
+.health-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    background-color: #f8f8f8;
+}
+
+.service-card i,
+.tip-icon {
+    color: #C7A57A;
+    transition: 0.3s;
+}
+
+.service-card h5,
+.health-card h5 {
+    font-weight: 700;
+    color: #01143C;
+    margin-bottom: 10px;
+}
+
+.service-card p,
+.health-card p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+.health-card img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* ================= Buttons ================= */
+.btn-theme,
+.read-more-btn,
+.animal-btn,
+.contact-form .btn-teal {
+    background-color: #01143C;
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.4s ease;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(1,20,60,0.3);
+}
+
+.btn-theme:hover,
+.read-more-btn:hover,
+.animal-btn:hover,
+.animal-btn.active,
+.contact-form .btn-teal:hover {
+    background-color: #C7A57A;
+    color: #01143C;
+    box-shadow: 0 8px 20px rgba(199,165,122,0.5);
+    transform: translateY(-2px);
+}
+
+/* ================= Emergency Contacts Table ================= */
+#emergency-contacts table {
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+}
+
+#emergency-contacts th {
+    background-color: #01143C;
+    color: #fff;
+    font-weight: 700;
+}
+
+#emergency-contacts td {
+    background-color: #f8f8f8;
+    color: #555;
+}
+
+/* ================= Contact Info Block ================= */
+.contact-info {
+    background: #0b1f46!important;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    color: #fff;
+    padding: 30px;
+}
+
+.contact-info a {
+    color: #C7A57A;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+
+/* ================= Hero Section ================= */
+.hero {
+    position: relative;
+    padding: 120px 0;
+    background: linear-gradient(135deg, #fce9d4, #fff7f0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.hero-content {
+    max-width: 750px;
+    margin: 0; /* FIXED */
+    margin-left: 60px;
+}
+
+.hero-content h1 {
+    font-size: 58px;
+    font-weight: 800;
+    color: #333;
+}
+
+.hero-content p {
+    font-size: 20px;
+    margin: 20px 0 35px;
+    color: #555;
+}
+
+.hero-buttons .btn-primary {
+    padding: 12px 28px;
+    background: rgba(1,20,60,0.9);
+    color: white;
+    border-radius: 8px;
+    border: 2px solid #01143C;
+    margin-right: 15px;
+    transition: 0.3s;
+}
+
+.hero-buttons .btn-primary:hover {
+    background: #01143C;
+}
+
+.hero-buttons .btn-outline {
+    padding: 12px 28px;
+    border: 2px solid #01143C;
+    color: #01143C;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.hero-buttons .btn-outline:hover {
+    background: #01143C;
+    color: white;
+}
+
+.hero-image img {
+    width: 480px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Floating decorative shapes – FIXED to gold theme */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(199,165,122,0.2);
+    animation: float 5s infinite ease-in-out;
+}
+
+.shape1 { width: 160px; height: 160px; top: -40px; left: -30px; }
+.shape2 { width: 120px; height: 120px; bottom: 60px; right: 50px; }
+.shape3 { width: 70px; height: 70px; top: 150px; right: 200px; }
+
+/* Floating animation */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+    100% { transform: translateY(0px); }
+}
+
+
+/* ================= Responsive ================= */
+@media (max-width: 992px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 100px 20px;
+    }
+    .hero-content { margin: 0; }
+    .hero-image img { width: 360px; margin: 40px 0 0; }
+}
+
+@media (max-width: 768px) {
+    #emergency-services .row,
+    #first-aid-tips .row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .section-title { font-size: 22px; }
+    .health-card img { height: 150px; }
+}</style>
+
 </head>
 <body>
-<div id="top-bar" style=" justify-content:space-between; padding:10px 20px; background:#F7E9D4;">
-<div id="user-welcome" style="    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
-">Hi, <span id="user-name-display"></span>!
+<!-- Top Bar -->
+<div id="top-bar" style="justify-content:space-between; padding:10px 20px; ">
+
+<div id="user-welcome" style="font-size:clamp(0.7rem,1.1vw,0.85rem);">Hi, <span id="user-name-display"></span>!
     <small style="color: rgb(246,203,166); font-weight: bold;">(Visited <span id="visit-count"></span> times)</small>
 </div>
 <div id="clock-location">
   <span id="clock"></span>
   <span id="location"></span>
 </div>
-<!-- 
-<div id="clock-location">
-<span id="clock"></span> | <span id="location"></span>
-</div> -->
+
 </div>
 <nav class="navbar navbar-expand-xl sticky-top">
-<div class="container-fluid">
-<a class="navbar-brand d-flex align-items-center" href="index.html">
-<img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
-<span class="brand-text">FurEver Care</span>
-</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
-<li class="nav-item"><a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a></li>
-<li class="nav-item"><a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a></li>
-<li class="nav-item"><a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a></li>
-<li class="nav-item"><a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a></li>
-<li class="nav-item"><a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a></li>
-<li class="nav-item"><a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a></li>
-</ul>
-</div>
-</div>
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center " id="nav-logo" href="index.html">
+      <img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
+      <span class="brand-text">FurEver Care</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
 
-<section class="owner-hero text-center text-white d-flex align-items-center justify-content-center">
+<!-- <section class="owner-hero text-center text-white d-flex align-items-center justify-content-center">
     <div class="overlay"></div>
     <div class="hero-bg"></div>
     <div class="container">
         <h1 class="display-4 fw-bold">Emergency & Vet Help</h1>
         <p class="lead">Quick access to veterinarians and urgent care for your beloved pets.</p>
     </div>
+</section> -->
+<section class="hero text-center">
+    <div class="hero-content text-center">
+        <h1>Premium Care for Your Furry Friends 🐾</h1>
+        <p>Your pet deserves love, comfort & luxury — we make sure they get it every day.</p>
+
+        <div class="hero-buttons">
+            <a href="owner.html#owner-services" class="btn-primary">Explore Services</a>
+            <a href="shelter.html#contact" class="btn-outline">Book Appointment</a>
+        </div>
+    </div>
+
+    <!-- Floating Shapes -->
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
 </section>
 
 <section id="emergency-services" class="container my-5">
@@ -495,7 +861,7 @@ background-color: #01143C;    color: #fff;
     </div>
 </section>
 
-<section id="first-aid-tips" class="container my-5">
+<section id="first-aid-tips" class="container my-5" itemid="">
     <h2 class="section-title text-center mb-4">Pet First Aid Tips</h2>
     <div class="text-center mb-4">
         <button class="animal-btn" data-animal="all">All</button>
@@ -587,7 +953,7 @@ background-color: #01143C;    color: #fff;
         </table>
     </div>
     <div class="contact-info fade-card mt-4 p-4 rounded" style="background:#fff8f0; box-shadow:0 8px 20px rgba(0,0,0,0.1);">
-        <h4 style="color: grey!important;">Contact Information</h4>
+        <h4 style="font-weight: 800;">Contact Information</h4>
         <p ><strong>Email:</strong> <a href="mailto:support@furevercare.com">support@furevercare.com</a></p>
         <p><strong>Phone:</strong> <a href="tel:+923001122334">+92 300 1122334</a></p>
         <p><strong>Address:</strong> 123 Pet Street, Lahore, Pakistan</p>
@@ -598,15 +964,17 @@ background-color: #01143C;    color: #fff;
 
 
 
-
 <!-- Footer -->
 <footer class="lux-footer mt-4">
 <div class="container text-center">
+
 <div class="footer-logo-wrap mb-2">
 <h3 class="footer-brand-text mt-1">FurEver Care</h3>
 <p class="footer-tagline">"Caring for pets, anytime, anywhere."</p>
 </div>
+
 <div class="row justify-content-center">
+
 <div class="col-md-3 col-6 mb-3">
 <h6 class="footer-heading">Pet Care</h6>
 <ul class="list-unstyled footer-links">
@@ -620,18 +988,18 @@ background-color: #01143C;    color: #fff;
 <h6 class="footer-heading">Resources</h6>
 <ul class="list-unstyled footer-links">
 <li><a href="emergency.html">Emergency</a></li>
-<li><a href="about.html">About Us</a></li>
+<li><a href="index.html#about">About Us</a></li>
 <li><a href="contact.html">Contact</a></li>
-<li><a href="#">Pet Tips</a></li>
+<li><a href="emergency.html#first-aid-tips">Pet Tips</a></li>
 </ul>
 </div>
 <div class="col-md-3 col-6 mb-3">
 <h6 class="footer-heading">Community</h6>
 <ul class="list-unstyled footer-links">
-<li><a href="#">Blogs</a></li>
-<li><a href="#">Success Stories</a></li>
-<li><a href="#">Adoption Drives</a></li>
-<li><a href="#">Events</a></li>
+<li><a href="vet.html#faq">Blogs</a></li>
+<li><a href="shelter.html#suc">Success Stories</a></li>
+<li><a href="contact.html">Adoption Drives</a></li>
+<li><a href="shelter.html#ev">Events</a></li>
 </ul>
 </div>
 <div class="col-md-3 col-6 mb-3">
@@ -650,9 +1018,9 @@ background-color: #01143C;    color: #fff;
 <div class="footer-bottom mt-2">
 <p>&copy; 2025 FurEver Care. All Rights Reserved.</p>
 </div>
+
 </div>
 </footer>
-
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const nameEl = document.getElementById("user-name-display");
@@ -749,5 +1117,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/aos.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>

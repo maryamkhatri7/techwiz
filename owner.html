@@ -9,794 +9,1015 @@
     <link rel="stylesheet" href="css/aos.css"><!--AOS -->
     <link rel="stylesheet" href="css/style.css">
 <style>
-/* ---------------- TEAM CARDS ---------------- */
-.team-card {
-  background: #FBF6F4;
-  border-radius: 20px;
-  padding: 2rem 1.5rem;
-  box-shadow: 0 10px 20px rgba(196,155,99,0.2), 0 6px 6px rgba(0,0,0,0.1);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+
+/* Smooth hero entrance animation */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-.team-card i {
-  color: #C7A57A;
-  transition: transform 0.4s ease, color 0.4s ease;
-}
-
-.team-card h5 {
-  color: #01143C;
-  margin-top: 1rem;
-  font-size: 1.25rem;
-}
-
-.team-card p {
-  color: #555;
-  margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
-
-.team-card a {
-  color: #01143C;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.team-card a:hover {
-  color: #C7A57A;
-}
-
-.team-card::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(196,155,99,0.15) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity 0.5s ease;
-  pointer-events: none;
-}
-
-.team-card:hover::before {
-  opacity: 1;
-}
-
-.team-card:hover {
-  transform: translateY(-15px);
-  box-shadow: 0 25px 35px rgba(196,155,99,0.4), 0 0 25px rgba(196,155,99,0.3);
-}
-
-.team-card:hover i {
-  transform: scale(1.4) rotate(-5deg);
-  color: #f7cc67;
-}
-
-/* ---------------- CONTACT FORM ---------------- */
-.contact-form {
-  background: #fff;
-  border-radius: 20px;
-  padding: 2rem;
-  transition: all 0.3s ease;
-}
-
-.contact-form input, 
-.contact-form textarea {
-  border-radius: 12px;
-  border: 2px solid #ccc;
-  transition: all 0.3s ease;
-}
-
-.contact-form input:focus, 
-.contact-form textarea:focus {
-  border-color: #C7A57A;
-  box-shadow: 0 0 8px rgba(199,165,122,0.4);
-  outline: none;
-}
-
-.contact-form .btn-teal {
-  background-color: #01143C;
-  color: #fff;
-  border: none;
-  border-radius: 50px;
-  padding: 0.5rem 1.5rem;
-  max-width: 200px;
-  font-weight: 600;
-  cursor: pointer;
-  box-shadow: 0 6px 15px rgba(1,20,60,0.3);
-  transition: all 0.4s ease;
-}
-
-.contact-form .btn-teal:hover {
-  background-color: #C7A57A;
-  color: #01143C;
-  box-shadow: 0 8px 20px rgba(199,165,122,0.5);
-  transform: translateY(-2px);
-}
-
-/* ---------------- STAR RATING ---------------- */
-.star-rating {
-  font-size: 1.4rem;
-  color: #ccc;
-  cursor: pointer;
-  display: flex;
-  gap: 5px;
-}
-
-.star-rating i:hover,
-.star-rating i.active {
-  color: #C7A57A;
-  transition: all 0.3s ease;
-}
-
-/* ---------------- GOOGLE MAP ---------------- */
-.map-container iframe {
-  border-radius: 12px;
-  transition: all 0.3s ease;
-}
-
-/* ---------------- BUTTONS ---------------- */
-.btn-theme {
-  background: #01143C;
-  color: #fff;
-  border-radius: 25px;
-  padding: 10px 20px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 6px 15px rgba(1,20,60,0.3);
-}
-
-.btn-theme:hover {
-  background-color: #C7A57A;
-  color: #01143C;
-  transform: translateY(-2px) scale(1.05);
-  box-shadow: 0 8px 20px rgba(199,165,122,0.4);
-}
-
-/* ---------------- HERO SECTION ---------------- */
-.owner-hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.owner-hero .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.owner-hero .container {
-  position: relative;
-  z-index: 2;
-}
-
-.hero-bg-slide {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  opacity: 0;
-  transition: opacity 1.5s ease-in-out;
-  z-index: 0;
-}
-
-.hero-bg-slide.active {
-  opacity: 1;
-}
-
-/* ---------------- PET DASHBOARD CARDS ---------------- */
-.card {
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  background: #fff;
-}
-
-.card:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-/* ---------------- PRODUCT CARDS ---------------- */
-.product-card {
-  background: #fff;
-  border-radius: 15px;
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.product-card img {
-  max-height: 180px;
-  object-fit: contain;
-  margin-bottom: 10px;
-}
-
-.product-card h5 {
-  margin: 0.5rem 0;
-}
-
-.product-card p {
-  flex-grow: 1;
-}
-
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-}
-
-/* ---------------- FEEDING SECTION ---------------- */
-.feeding-flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
-.feeding-desc,
-.feeding-chart {
-  flex: 1 1 45%;
-  min-width: 250px;
-}
-
-@media (max-width: 768px) {
-  .feeding-flex {
-    flex-direction: column;
-    align-items: center;
-  }
-  .feeding-desc,
-  .feeding-chart {
-    flex: 1 1 100%;
-    max-width: 500px;
-    text-align: center;
-  }
-}
-
-/* ---------------- ANIMAL BUTTONS ---------------- */
-.animal-btn {
-  background-color: #01143C;
-  color: #fff;
-  font-weight: 600;
-  padding: 10px 18px;
-  margin: 5px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.animal-btn:hover {
-  background-color: #C7A57A;
-  color: #01143C;
-  transform: scale(1.15) translateY(-3px);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-}
-/* ================= GLOBAL ================= */
-body, a, p, h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    padding: 0;
-    font-family: 'Playfair Display', serif;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: #C7A57A;
-}
-
-* {
-    transition: all 0.3s ease !important;
-}
-
-/* ================= HERO ================= */
-.owner-hero {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-    background: url('images/pet-hero.jpg') center/cover no-repeat;
-}
-
-.owner-hero .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(1,20,60,0.45); /* navy overlay for theme */
-    z-index: 1;
-}
-
-.owner-hero .container {
-    position: relative;
-    z-index: 2;
-    color:white;
-    text-align: center;
-}
-
-.owner-hero h1 {
-    font-size: 3rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
-
-.owner-hero p {
-    font-size: 1.2rem;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
-    margin-bottom: 15px;
-}
-
-/* ================= BUTTONS ================= */
-.btn-theme, .hero-btn, .read-more-btn, .animal-btn, .btn-gradient {
-    background: linear-gradient(45deg, #01143C, #C7A57A);
-    color: #fff;
-    border-radius: 25px;
-    border: none;
-    padding: 0.5rem 1.5rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 6px 20px rgba(1,20,60,0.25);
-}
-
-.btn-theme:hover,
-.hero-btn:hover,
-.read-more-btn:hover,
-.animal-btn:hover,
-.btn-gradient:hover {
-    background: linear-gradient(45deg, #C7A57A, #01143C);
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(1,20,60,0.3);
-}
-
-/* ================= CARDS ================= */
-.card, .team-card, .product-card, .tip-card, .health-card, .dashboard-card {
+/* CARDS */
+.dashboard-card {
+    background: #FBF6F4;
     border-radius: 20px;
-    background: #fffaf0;
-    box-shadow: 0 10px 25px rgba(1,20,60,0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+.dashboard-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 20px 30px rgba(0,0,0,0.2);
 }
 
-.card:hover, .team-card:hover, .product-card:hover, .tip-card:hover, .health-card:hover, .dashboard-card:hover {
+/* TIP CARDS */
+.tip-card {
+    border-radius: 15px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+.tip-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 20px 35px rgba(1,20,60,0.2);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.18);
 }
 
-/* Team Cards */
-.team-card {
-    padding: 2rem 1.5rem;
-    overflow: hidden;
-    position: relative;
+/* FORM */
+#petForm input, 
+#petForm select, 
+#petForm textarea {
+    border-radius: 12px;
+    border: 2px solid #ccc;
+}
+#petForm input:focus, 
+#petForm select:focus, 
+#petForm textarea:focus {
+    border-color: #C7A57A;
+    box-shadow: 0 0 8px rgba(199,165,122,0.4);
 }
 
-.team-card i {
-    color: #C7A57A;
-    transition: transform 0.4s ease, color 0.4s ease;
-}
-
-.team-card h5 {
-    color: #01143C;
-    margin-top: 1rem;
-}
-
-.team-card p {
-    color: #555;
-}
-
-.team-card a {
-    color: #01143C;
-    font-weight: 500;
-}
-
-.team-card a:hover {
-    color: #C7A57A;
-}
-
-.team-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(199,165,122,0.15) 0%, transparent 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.team-card:hover::before {
-    opacity: 1;
-}
-
-.team-card:hover i {
-    transform: scale(1.4) rotate(-5deg);
-    color: #f7cc67;
-}
-
-/* ================= SECTION TITLES ================= */
+/* TITLES */
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-weight: 700;
-    font-size: 2.2rem;
+    font-weight: bold;
     color: #01143C;
-    position: relative;
-    margin-bottom: 1rem;
 }
-
 .section-title::after {
     content: '';
     display: block;
-    width: 60px;
+    width: 70px;
     height: 3px;
-    background: linear-gradient(90deg, #01143C, #C7A57A);
     margin: 8px auto 0;
-    border-radius: 2px;
+    background: linear-gradient(90deg, #01143C, #C7A57A);
 }
 
-/* ================= FORM ================= */
-.contact-form {
-    background:white;
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: 0 10px 25px rgba(1,20,60,0.1);
+body {
+    font-family: "Poppins", sans-serif;
+    background: #faf7f4;
+    color: #333;
 }
 
-.contact-form input,
-.contact-form textarea {
+.section-title {
+    font-family: "Playfair Display", serif;
+    font-weight: 700;
+    color: #01143C;
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: "";
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #C7A57A, #01143C);
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 6px;
+}
+
+
+/* ========================= */
+/*  DASHBOARD CARDS          */
+/* ========================= */
+
+.dashboard-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 25px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    transition: 0.35s ease;
+    border: 1px solid #f1e8df;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.15);
+}
+
+
+/* ========================= */
+/*  BUTTON STYLES            */
+/* ========================= */
+
+.btn-theme {
+    background: #C7A57A;
+    color: #01143C;
+    padding: 0.75rem 1.6rem;
     border-radius: 12px;
-    border: 2px solid #ccc;
-    padding: 12px;
-    transition: all 0.3s ease;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: #C7A57A;
-    box-shadow: 0 0 8px rgba(199,165,122,0.4);
-    outline: none;
-}
-
-/* ================= FEEDING & FLEX ================= */
-.feeding-flex {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    align-items: flex-start;
-}
-
-.feeding-desc, .feeding-chart {
-    flex: 1 1 45%;
-    min-width: 250px;
-}
-
-@media (max-width: 768px) {
-    .feeding-flex {
-        flex-direction: column;
-        align-items: center;
-    }
-    .feeding-desc, .feeding-chart {
-        flex: 1 1 100%;
-        max-width: 500px;
-        text-align: center;
-    }
-}
-
-/* ================= RESPONSIVE ================= */
-@media(max-width:768px){
-  .team-card { padding: 1.5rem; }
-  .contact-form { padding: 1.5rem; }
-}
-
-@media(max-width:480px){
-  .section-title { font-size: 1.5rem; }
-  .team-card { padding: 1rem; }
-  .contact-form { padding: 1rem; }
-}
-
-/* ================= IMAGE & OVERLAY ================= */
-.hero-bg-slide {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0;
-    transition: opacity 1.5s ease-in-out;
-    z-index: 0;
-}
-
-.hero-bg-slide.active {
-    opacity: 1;
-}
-/* ================= BUTTONS ================= */
-.btn-theme, .hero-btn, .read-more-btn, .animal-btn, .btn-gradient {
-    background-color: #01143C!important; /* single navy color */
-    color: #fff;
-    border-radius: 25px;
     border: none;
-    padding: 0.5rem 1.5rem;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    box-shadow: 0 6px 20px rgba(1,20,60,0.25);
+    transition: 0.3s;
+    display: inline-block;
 }
 
-.btn-theme:hover,
-.hero-btn:hover,
-.read-more-btn:hover,
-.animal-btn:hover,
-.btn-gradient:hover {
-    background-color:#f7cc67!important; /* slightly lighter navy on hover */
-    transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(1,20,60,0.3);
+.btn-theme:hover {
+    background: #b38e63;
 }
 
-/* ================= LINKS ================= */
-a {
-    text-decoration: none; /* remove all lines */
-    color: inherit;
-    transition: color 0.3s ease;
+
+/* ========================= */
+/*  FORM STYLING            */
+/* ========================= */
+
+#petForm input,
+#petForm select,
+#petForm textarea {
+    border-radius: 12px;
+    border: 2px solid #ddd0c3;
+    padding: 10px;
+    transition: 0.3s;
 }
 
-a:hover {
-    color: #C7A57A!important; /* optional hover highlight */
+#petForm input:focus,
+#petForm select:focus,
+#petForm textarea:focus {
+    border-color: #C7A57A;
+    box-shadow: 0 0 8px rgba(199,165,122,0.45);
 }
+
+
+/* ========================= */
+/*  CONTACT/REGISTRATION BOX */
+/* ========================= */
+
+.contact-form {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+    border: 1px solid #f1e8df;
+}
+
+
+/* ========================= */
+/*  TIP CARDS                */
+/* ========================= */
+
+.tip-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    border: 1px solid #f1e8df;
+}
+
+.tip-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 30px rgba(0,0,0,0.15);
+}
+
+.tip-card img {
+    border-radius: 15px;
+}
+
+
+/* ========================= */
+/*  SERVICE CARDS            */
+/* ========================= */
+
+.service-card {
+    background: #fff;
+    border-radius: 18px;
+    transition: 0.35s ease;
+    border: 1px solid #eedfce;
+    padding: 30px;
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.15);
+}
+
+
+/* ========================= */
+/*  PRODUCT CARDS            */
+/* ========================= */
+
+.product-card {
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid #eedfce;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.08);
+    transition: 0.3s ease;
+    height: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.product-card img {
+    border-radius: 12px;
+}
+
+
+/* ========================= */
+/*  CALLOUT / CTA SECTION    */
+/* ========================= */
+
+/* .owner-cta {
+    background: #C7A57A;
+    padding: 60px 0;
+    color: #01143C;
+}
+
+.owner-cta a {
+    background: white;
+    color: #01143C;
+    padding: 12px 28px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.owner-cta a:hover {
+    background: #f2e6d8;
+} */
+
+
+[data-aos] {
+    transition-timing-function: ease !important;
+}/* HERO */
+.hero-modern {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #F5EBDD, #F0D8B6, #FFE8C5); /* soft nude gradient */
+
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(247, 241, 233, 0.25) 0%,  /* soft gold shimmer */
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 750px;
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #01143C;
+  letter-spacing: -1px;
+  text-shadow: 0 3px 15px rgba(199,165,122,0.4); /* subtle gold shadow */
+}
+
+.hero-content p {
+  font-size: clamp(1rem, 1.3vw, 1.3rem);
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: #2B2B2B;
+}
+
+.btn-hero {
+  background: linear-gradient(135deg, #C7A57A, #F5CBAA);
+  color: #01143C;
+  padding: 0.9rem 2.2rem;
+  font-weight: 600;
+  border-radius: 50px;
+  transition: 0.35s ease;
+  /* display: inline-block; */
+}
+.btn-hero:hover {
+  background: linear-gradient(135deg, #b38e63, #e6b98b);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(199,165,122,0.3);
+}
+/* Floating Luxury Shapes */
+.hero-shapes .shape {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(199,165,122,0.15);
+  animation: float 6s ease-in-out infinite;
+}
+.hero-shapes .shape-1 { width: 120px; height: 120px; top: 20%; left: 10%; }
+.hero-shapes .shape-2 { width: 80px; height: 80px; bottom: 15%; right: 15%; animation-delay: 2s; }
+.hero-shapes .shape-3 { width: 100px; height: 100px; top: 35%; right: 25%; animation-delay: 4s; }
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+/* Responsiveness */
+@media (max-width: 992px) {
+  .hero-content h1 { font-size: clamp(2.2rem, 6vw, 3.2rem); }
+  .hero-content p { font-size: 1rem; }
+}
+/* ====== Headings Responsive ====== */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.4rem !important;
+    }
+    .hero-content p {
+        font-size: 1rem !important;
+    }
+    .section-title {
+        font-size: 1.5rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-content h1 {
+        font-size: 1.8rem !important;
+    }
+    .hero-content p {
+        font-size: 0.95rem !important;
+    }
+    .section-title {
+        font-size: 1.2rem !important;
+    }
+}
+
+
+.hero-floating img {
+  position: absolute;
+  border-radius: 15px;
+  object-fit: cover;
+  animation: floatPet 6s ease-in-out infinite;
+  opacity: 0.9;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.pet-1 { top: 10%; left: 10%; width: 90px; z-index: 3; animation-delay: 0s; }
+.pet-2 { top: 15%; right: 15%; width: 80px; z-index: 2; animation-delay: 1s; }
+.pet-3 { bottom: 10%; left: 20%; width: 100px; z-index: 4; animation-delay: 2s; }
+.pet-4 { bottom: 15%; right: 10%; width: 70px; z-index: 1; animation-delay: 3s; }
+
+@keyframes floatPet {
+  0%,100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translate(-5px,-10px) rotate(3deg); }
+  50% { transform: translate(5px,10px) rotate(-3deg); }
+  75% { transform: translate(-3px,-5px) rotate(2deg); }
+}
+/* ====== Floating Images Responsive ====== */
+.hero-floating img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Specific for small screens */
+@media (max-width: 768px) {
+    .pet-1, .pet-2, .pet-3, .pet-4 {
+        width: 60px !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .pet-1, .pet-2, .pet-3, .pet-4 {
+        width: 45px !important;
+    }
+}
+
+/* MODAL BASE */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.modal-content {
+  background: #FFF8F0;
+  margin: 10% auto;
+  padding: 30px 25px;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+  animation: slideDown 0.4s ease;
+}
+
+.modal-content h3 {
+  color: #C7A57A;
+  margin-bottom: 15px;
+}
+
+.modal-content p {
+  color: #2B2B2B;
+  font-size: 16px;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.modal-content ul {
+  text-align: left;
+  margin: 15px 0;
+  padding-left: 20px;
+  color: #555;
+}
+
+.modal-content button.btn-theme {
+  margin-top: 15px;
+}
+
+/* CLOSE BUTTON */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #C7A57A;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.close:hover {
+  color: #8b6b4f;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideDown {
+  from {transform: translateY(-50px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+.tip-card img {
+    height: 210px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+}@media (max-width: 576px) {
+  .tip-card img {
+    height: 150px;
+  }
+}
+/* ====== Buttons Responsive ====== */
+@media (max-width: 768px) {
+    .btn-hero, .owner-btn, .btn-theme {
+        padding: 0.6rem 1.2rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .btn-hero, .owner-btn, .btn-theme {
+        padding: 0.5rem 1rem !important;
+        font-size: 0.8rem !important;
+    }
+}
+
+.tip-card img {
+    width: 100%;
+    height: auto;
+    max-height: 210px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+@media (max-width: 576px) {
+    .tip-card img {
+        max-height: 150px;
+    }
+}@media (max-width: 768px) {
+  .dashboard-card, .tip-card {
+    margin-bottom: 20px;
+  }
+}
+
+
+@media (max-width: 576px) {
+    .tip-card, .pet-card, .dashboard-card {
+        width: 100% !important; /* Full width */
+        margin: 0 0 15px 0 !important;
+    }
+}
+/* Form Text Responsive */
+@media (max-width: 768px) {
+    input[type="text"], input[type="email"], textarea, select {
+        font-size: 0.95rem !important;
+        padding: 0.5rem 0.8rem !important;
+    }
+    label {
+        font-size: 0.9rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    input[type="text"], input[type="email"], textarea, select {
+        font-size: 0.85rem !important;
+        padding: 0.4rem 0.6rem !important;
+    }
+    label {
+        font-size: 0.8rem !important;
+    }
+}
+
 </style>
 
-</style>
+
 </head>
 <body>
-<div id="top-bar" style=" justify-content:space-between; padding:10px 20px; background:#F7E9D4;">
-<div id="user-welcome" style="    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
-">Hi, <span id="user-name-display"></span>!
+<!-- Top Bar -->
+<!-- Top Bar -->
+<div id="top-bar" style=" justify-content:space-between; padding:10px 20px; ">
+
+<div id="user-welcome" style="font-size:clamp(0.7rem,1.1vw,0.85rem);">Hi, <span id="user-name-display"></span>!
     <small style="color: rgb(246,203,166); font-weight: bold;">(Visited <span id="visit-count"></span> times)</small>
 </div>
 <div id="clock-location">
   <span id="clock"></span>
   <span id="location"></span>
 </div>
-<!-- 
-<div id="clock-location">
-<span id="clock"></span> | <span id="location"></span>
-</div> -->
+
 </div>
 <nav class="navbar navbar-expand-xl sticky-top">
-<div class="container-fluid">
-<a class="navbar-brand d-flex align-items-center" href="index.html">
-<img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
-<span class="brand-text">FurEver Care</span>
-</a>
-<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-<span class="navbar-toggler-icon"></span>
-</button>
-<div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
-<ul class="navbar-nav ms-auto">
-<li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a></li>
-<li class="nav-item"><a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a></li>
-<li class="nav-item"><a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a></li>
-<li class="nav-item"><a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a></li>
-<li class="nav-item"><a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a></li>
-<li class="nav-item"><a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a></li>
-<li class="nav-item"><a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a></li>
-</ul>
-</div>
-</div>
+  <div class="container-fluid">
+    <a class="navbar-brand d-flex align-items-center " id="nav-logo" href="index.html">
+      <img src="images/ChatGPT_Image_Sep_11__2025__11_38_26_AM-removebg-preview.png" alt="" class="logo img-fluid me-1">
+      <span class="brand-text">FurEver Care</span>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse mt-2 mt-lg-0 ms-auto" id="mainNavbar">
+      <ul class="navbar-nav ms-auto">
+
+        <li class="nav-item">
+          <a class="nav-link" href="index.html"><i class="fa-solid fa-house"></i>Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="owner.html"><i class="fa-solid fa-paw"></i>Pet Owner</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="vet.html"><i class="fa-solid fa-user-md"></i>Veterinarians</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="shelter.html"><i class="fa-solid fa-dog"></i>Animal Shelter</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="products.html"><i class="fa-solid fa-bone"></i>Products</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="emergency.html"><i class="fa-solid fa-phone"></i>Emergency</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="contact.html"><i class="fa-solid fa-envelope"></i>Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<section class="owner-hero text-center text-white d-flex align-items-center justify-content-center">
-    <div class="overlay"></div>
-    <div class="container">
-        <h1 class="display-4 fw-bold">Welcome Pet Owners!</h1>
-        <p class="lead">Everything you need to care for your beloved pets, in one place.</p>
-        <a href="#pet-tips" class="hero-btn mt-3">Explore Tips & Services</a>
-    </div>
+
+<section class="hero-modern">
+
+  <!-- Luxury Gradient Overlay -->
+  <div class="hero-overlay"></div>
+
+  <!-- Hero Content -->
+  <div class="hero-content container text-center">
+    <h1 data-aos="fade-up">Premium Care for Every Pet Parent</h1>
+    <p data-aos="fade-up" data-aos-delay="200">
+      Track health, schedule appointments, and access resources — all in one elegant dashboard.
+    </p>
+    <a href="#owner-services" class="btn-hero" data-aos="zoom-in" data-aos-delay="400">Explore Tools</a>
+  </div>
+
+  <!-- Floating Pet Images -->
+  <div class="hero-floating">
+    <img src="images/dog1.jpg" class="float-pet pet-1" alt="dog">
+    <img src="images/cat1.jpg" class="float-pet pet-2" alt="cat">
+    <img src="images/rabbit1.jpg" class="float-pet pet-3" alt="bird">
+    <img src="images/cat2.jpg" class="float-pet pet-4" alt="rabbit">
+
+
+  </div>
 </section>
 
-<section id="pet-dashboard" class="container my-5">
-    <h2 class="section-title text-center mb-4">Pet Owner Dashboard</h2>
-    <div class="card p-4 mb-5 shadow-sm">
-        <h5 class="fw-bold mb-3">Pet Profile</h5>
-        <form id="petProfileForm">
-            <div class="row g-3">
-                <div class="col-md-6"><input type="text" class="form-control" placeholder="Pet Name" required></div>
-                <div class="col-md-6">
-                    <select class="form-select" required>
-                        <option value="">Species</option>
-                        <option>Dog</option>
-                        <option>Cat</option>
-                        <option>Bird</option>
-                        <option>Rabbit</option>
-                        <option>Reptile</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-                <div class="col-md-6"><input type="text" class="form-control" placeholder="Breed"></div>
-                <div class="col-md-6"><input type="number" class="form-control" placeholder="Age (years)" min="0"></div>
-                <div class="col-12"><input type="text" class="form-control" placeholder="Vaccination Info"></div>
-            </div>
-            <button type="submit" class="btn btn-gradient mt-3">Save Profile</button>
-        </form>
-    </div>
+<!-- ================= OWNER SERVICES ================= -->
+<section id="owner-services" class="py-5">
+  <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up">Owner Dashboard Tools</h2>
 
-    <section id="mini-dashboards" class="container my-5">
-        <h2 class="section-title text-center mb-4">Pet Trackers</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <div class="card p-3 shadow-sm dashboard-card">
-                    <h6 class="fw-bold mb-3">Appointments</h6>
-                    <ul id="appointmentsList" class="list-group list-group-flush mb-2"></ul>
-                    <input type="text" id="appointmentInput" class="form-control mb-2" placeholder="Add appointment...">
-                    <button class="btn btn-gradient w-100" id="addAppointmentBtn">Add</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-3 shadow-sm dashboard-card">
-                    <h6 class="fw-bold mb-3">Vaccinations</h6>
-                    <ul id="vaccinationList" class="list-group list-group-flush mb-2"></ul>
-                    <input type="text" id="vaccineInput" class="form-control mb-2" placeholder="Add vaccine...">
-                    <button class="btn btn-gradient w-100" id="addVaccineBtn">Add</button>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card p-3 shadow-sm dashboard-card">
-                    <h6 class="fw-bold mb-3">Weight Tracker</h6>
-                    <ul id="weightList" class="list-group list-group-flush mb-2"></ul>
-                    <input type="number" id="weightInput" class="form-control mb-2" placeholder="Weight (kg)">
-                    <button class="btn btn-gradient w-100" id="addWeightBtn">Add</button>
-                </div>
-            </div>
-        </div>
-    </section>
+      <div class="row mt-4 g-4">
 
-    <div class="card p-4 mb-5 shadow-sm">
-        <h5 class="fw-bold mb-3">Health & Training Tips</h5>
-        <div class="row g-3">
-            <div class="col-md-6">
-                <p>Tip 1: Navigating Stress in pets</p>
-                <audio controls src="./audio/7-navigating-overwhelm.mp3"></audio>
-            </div>
-            <div class="col-md-6">
-                <p>Tip 2: Basic training commands</p>
-                <audio controls src="./audio/common-sense-pet-parenting-tips.mp3"></audio>
-            </div>
-        </div>
-    </div>
+          <!-- CARD 1 -->
+          <div class="col-lg-4 col-md-6">
+              <div class="dashboard-card p-4 text-center" data-aos="zoom-in">
+                  <i class="fa-solid fa-notes-medical fa-3x mb-3" style="color:#C7A57A"></i>
+                  <h5 class="fw-bold mb-2">Health Records</h5>
+                  <p class="mb-3">Track vaccinations, medications & checkups effortlessly.</p>
+                  <a href="#pet-registration" class="btn-theme" data-modal="modal-health">Get Started</a>
+              </div>
+          </div>
 
-    <div class="card p-4 mb-5 shadow-sm">
-        <h5 class="fw-bold mb-3 section-title">Grooming Videos</h5>
-        <div class="row g-3">
-            <div class="col-md-6">
-                <iframe width="100%" height="250" src="https://www.youtube.com/embed/YpzjiS5M8V0" title="Brushing" frameborder="0" allowfullscreen></iframe>
-            </div>
-            <div class="col-md-6">
-                <iframe width="100%" height="250" src="https://www.youtube.com/embed/TwCmLYbaTb4" title="Bathing" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-    </div>
+          <!-- CARD 2 -->
+          <div class="col-lg-4 col-md-6">
+              <div class="dashboard-card p-4 text-center" data-aos="zoom-in" data-aos-delay="150">
+                  <i class="fa-solid fa-calendar-check fa-3x mb-3" style="color:#C7A57A"></i>
+                  <h5 class="fw-bold mb-2">Vet Appointments</h5>
+                  <p class="mb-3">Book & manage visits with trusted veterinarians.</p>
+                  <a href="vet.html" class="btn-theme">Book Now</a>
+              </div>
+          </div>
+
+          <!-- CARD 3 -->
+          <div class="col-lg-4 col-md-6">
+              <div class="dashboard-card p-4 text-center" data-aos="zoom-in" data-aos-delay="300">
+                  <i class="fa-solid fa-bone fa-3x mb-3" style="color:#C7A57A"></i>
+                  <h5 class="fw-bold mb-2">Feeding Guide</h5>
+                  <p class="mb-3">Personalized charts for your pet’s ideal diet.</p>
+                  <a href="#feeding-section" class="btn-theme">View Chart</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+<!-- MODALS -->
+<!-- Modal Template -->
+<div id="modal-health" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Health Records</h3>
+    <p>Keep track of your pet’s vaccinations, medications, and routine checkups. Get personalized reminders and manage all your health data in one place.</p>
+    <ul>
+      <li>Vaccination history</li>
+      <li>Medication tracker</li>
+      <li>Checkup schedules</li>
+    </ul>
+    <button class="btn-theme">Access Records</button>
+  </div>
+</div>
+
+<div id="modal-vet" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Vet Appointments</h3>
+    <p>Book & manage visits with trusted veterinarians. Never miss an appointment again and get reminders directly to your dashboard.</p>
+    <ul>
+      <li>Book new appointments</li>
+      <li>View past visits</li>
+      <li>Receive alerts & reminders</li>
+    </ul>
+    <button class="btn-theme">Book Appointment</button>
+  </div>
+</div>
+
+<div id="modal-feeding" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Feeding Guide</h3>
+    <p>Personalized feeding charts for your pet’s ideal diet. Ensure your furry friend gets the nutrition they need at every stage.</p>
+    <ul>
+      <li>Daily meal plan</li>
+      <li>Recommended portions</li>
+      <li>Custom diet suggestions</li>
+    </ul>
+    <button class="btn-theme">View Full Chart</button>
+  </div>
+</div>
+
+<!-- ================= PET REGISTRATION FORM ================= -->
+<section id="pet-registration" class="py-5">
+  <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up">Register Your Pet</h2>
+
+      <div class="contact-form mx-auto mt-4" style="max-width:700px;" data-aos="fade-up">
+
+          <form id="petForm">
+              <div class="row g-3">
+                  <div class="col-md-6">
+                      <label class="fw-bold">Pet Name</label>
+                      <input type="text" class="form-control" required>
+                  </div>
+
+                  <div class="col-md-6">
+                      <label class="fw-bold">Age</label>
+                      <input type="number" class="form-control" required>
+                  </div>
+
+                  <div class="col-md-6">
+                      <label class="fw-bold">Pet Type</label>
+                      <select class="form-control" required>
+                          <option>Dog</option>
+                          <option>Cat</option>
+                          <option>Bird</option>
+                          <option>Rabbit</option>
+                      </select>
+                  </div>
+
+                  <div class="col-md-6">
+                      <label class="fw-bold">Breed</label>
+                      <input type="text" class="form-control" required>
+                  </div>
+
+                  <div class="col-12">
+                      <label class="fw-bold">Health Notes</label>
+                      <textarea class="form-control" rows="4"></textarea>
+                  </div>
+
+                  <div class="col-12 text-center mt-2">
+                      <button class="btn-theme" type="submit">Save Pet</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
 </section>
 
-<section id="health-tips" class="mb-5">
-    <div class="container">
-        <h2 class="section-title text-center mb-4">Pet Health Tips & Guides</h2>
-        <div class="row g-3">
-            <div class="col-md-6 col-lg-4">
-                <div class="card tip-card p-3">
-                    <h5>Regular Checkups</h5>
-                    <p>Ensure your pet visits the vet at least twice a year to stay healthy.</p>
-                    <a href="https://www.allfriendsvethospitalny.com/blog/1290877-the-importance-of-regular-check-ups-insights-from-a-veterinarian" class="hero-btn mt-2">Read More</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card tip-card p-3">
-                    <h5>Balanced Diet</h5>
-                    <p>Provide the right nutrition based on your pet’s age and activity level.</p>
-                    <a href="https://www.uah-vet.com/guidance-on-balanced-diets-choosing-the-right-pet-food-and-managing-special-dietary-needs/" class="hero-btn mt-2">Read More</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4">
-                <div class="card tip-card p-3">
-                    <h5>Exercise & Play</h5>
-                    <p>Regular physical activity keeps pets healthy and happy.</p>
-                    <a href="https://link.springer.com/chapter/10.1007/978-1-4615-7572-6_5" class="hero-btn mt-2">Read More</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+<!-- ================= DAILY TIPS ================= -->
+<section class="py-5" id="pet-tips">
+  <div class="container">
+      <h2 class="section-title text-center" data-aos="fade-up">Daily Pet Tips</h2>
 
-<section class="bg-light py-5">
-    <div class="container">
-        <h2 class="section-title text-center mb-4">Featured Services for Owners</h2>
-        <div class="row g-4">
-            <div class="col-md-4">
-                <a href="veterinarians.html" class="service-link">
-                    <div class="service-card p-4 text-center shadow-sm rounded">
-                        <i class="fas fa-stethoscope fa-3x mb-3" style="color: rgb(106,74,43);"></i>
-                        <h5 class="fw-bold mb-2">Vet Consultation</h5>
-                        <p>Connect with certified veterinarians for timely check-ups and guidance.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="pet-adoption.html" class="service-link">
-                    <div class="service-card p-4 text-center shadow-sm rounded">
-                        <i class="fas fa-dog fa-3x mb-3" style="color: rgb(106,74,43);"></i>
-                        <h5 class="fw-bold mb-2">Pet Adoption Help</h5>
-                        <p>Find loving homes or adopt a pet with guidance and support from shelters.</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="nutrition-products.html" class="service-link">
-                    <div class="service-card p-4 text-center shadow-sm rounded">
-                        <i class="fas fa-bone fa-3x mb-3" style="color: rgb(106,74,43);"></i>
-                        <h5 class="fw-bold mb-2">Nutrition & Products</h5>
-                        <p>Discover the best food, toys, and products recommended for your pet's well-being.</p>
-                    </div>
-                </a>
-            </div>
-        </div>
-    </div>
-</section>
+      <div class="row mt-4 g-4">
 
-<section id="products" class="mb-5">
-    <div class="container">
-        <h2 class="section-title text-center mb-4">Recommended Products</h2>
-        <div class="row g-3">
-            <div class="col-md-6 col-lg-4 d-flex">
-                <div class="card product-card p-3 text-center">
-                    <img src="./images/20250912_1630_image.png" alt="Product 1" class="img-fluid mb-3">
-                    <h5>Premium Pet Food</h5>
-                    <p>High-quality nutrition for your pets.</p>
-                    <a href="product.html" class="btn btn-success">View Now</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 d-flex">
-                <div class="card product-card p-3 text-center">
-                    <img src="./images/Squeaky Duck Toy.webp" alt="Product 2" class="img-fluid mb-3">
-                    <h5>Pet Toys</h5>
-                    <p>Fun and safe toys to keep your pets active.</p>
-                    <a href="product.html" class="btn btn-success">View Now</a>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 d-flex">
-                <div class="card product-card p-3 text-center">
-                    <img src="./images/Premium Groom Kit.webp" alt="Product 3" class="img-fluid mb-3">
-                    <h5>Pet Care Kit</h5>
-                    <p>Everything you need for grooming and care.</p>
-                    <a href="product.html" class="btn btn-success">View Now</a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+          <div class="col-md-4">
+              <div class="tip-card p-3" data-aos="fade-up">
+                  <img src="images/petdiet.jpg" class="img-fluid rounded mb-3">
+                  <h5 class="fw-bold">Balanced Diet</h5>
+                  <p>Ensure your pet’s diet contains the right protein, fats & minerals.</p>
+              </div>
+          </div>
 
-<section class="owner-cta text-center text-white py-5">
-    <div class="container">
-        <h2 class="fw-bold mb-3 section-title">Join FurEver Care Today!</h2>
-        <p class="mb-4" style="color:black!important;">Track your pet’s health, get tips, and connect with vets and shelters effortlessly.</p>
-        <a href="contact.html" class="btn btn-lg btn-light fw-bold">Get Started</a>
-    </div>
-</section>
+          <div class="col-md-4">
+              <div class="tip-card p-3" data-aos="fade-up" data-aos-delay="150">
+                  <img src="images/petexercise.jpg" class="img-fluid rounded mb-3">
+                  <h5 class="fw-bold">Daily Exercise</h5>
+                  <p>Walk your pet daily to boost their health & emotional well-being.</p>
+              </div>
+          </div>
 
+          <div class="col-md-4">
+              <div class="tip-card p-3" data-aos="fade-up" data-aos-delay="300">
+                  <img src="images/petbath.jpg" class="img-fluid rounded mb-3">
+                  <h5 class="fw-bold">Regular Baths</h5>
+                  <p>Helps avoid infections & keeps your pet fresh & clean.</p>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</section>
+<script>// MODAL LOGIC
+const modals = {
+  'Health Records': document.getElementById('modal-health'),
+  'Vet Appointments': document.getElementById('modal-vet'),
+  'Feeding Guide': document.getElementById('modal-feeding')
+};
+
+// Buttons triggers
+document.querySelectorAll('.dashboard-card .btn-theme').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const cardTitle = btn.closest('.dashboard-card').querySelector('h5').textContent;
+    modals[cardTitle].style.display = 'block';
+  });
+});
+
+// Close buttons
+document.querySelectorAll('.modal .close').forEach(span => {
+  span.addEventListener('click', () => {
+    span.closest('.modal').style.display = 'none';
+  });
+});
+
+// Click outside to close
+window.addEventListener('click', (e) => {
+  document.querySelectorAll('.modal').forEach(modal => {
+    if (e.target == modal) modal.style.display = 'none';
+  });
+});
+</script>
+<script>
+// =====================
+// MODAL SYSTEM (CLEAN)
+// =====================
+
+// Open modal
+document.querySelectorAll("[data-modal]").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const id = btn.dataset.modal;
+        const modal = document.getElementById(id);
+
+        if (modal) {
+            modal.style.display = "flex";
+            modal.classList.add("open");
+
+            // Auto-focus first button or input
+            const focusEl = modal.querySelector("button, input");
+            if (focusEl) focusEl.focus();
+        }
+    });
+});
+
+// Close modal (X button)
+document.querySelectorAll(".modal .close").forEach(close => {
+    close.addEventListener("click", () => {
+        const modal = close.closest(".modal");
+        closeModal(modal);
+    });
+});
+
+// Close modal when clicking outside content
+window.addEventListener("click", e => {
+    if (e.target.classList.contains("modal")) {
+        closeModal(e.target);
+    }
+});
+
+// Close modal with ESC key
+document.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+        document.querySelectorAll(".modal.open").forEach(modal => closeModal(modal));
+    }
+});
+
+// Reusable close function
+function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove("open");
+    setTimeout(() => (modal.style.display = "none"), 200);
+}
+
+
+// ===========================
+// ACTIONS FOR MODAL BUTTONS
+// ===========================
+
+document.querySelectorAll(".modal .btn-theme").forEach(button => {
+    button.addEventListener("click", () => {
+        const modal = button.closest(".modal");
+        const modalID = modal.id;
+
+        // ---- CUSTOM ACTIONS ----
+        switch (modalID) {
+            case "modal-health":
+                smoothNavigate("#health-section");
+                break;
+
+            case "modal-vet":
+                smoothNavigate("#vet-services");
+                break;
+
+            case "modal-feeding":
+                smoothNavigate("#feeding-guide");
+                break;
+
+            case "modal-schedule":
+                smoothNavigate("#appointment-section");
+                break;
+
+            default:
+                console.log("Modal button clicked:", modalID);
+        }
+
+        // Close modal after action
+        closeModal(modal);
+    });
+});
+
+
+// Smooth scroll helper
+function smoothNavigate(target) {
+    const el = document.querySelector(target);
+    if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+    }
+}
+</script>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="dashboardModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content border-0 shadow-lg rounded-3">
+      <div class="modal-header text-white" style="background-color:  rgb(1, 20, 60);">
+        <h5 class="modal-title">Action Status</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <p id="modalMessage">Your pet information has been successfully saved. Stay happy with your furry friend!</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-theme" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Toast -->
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 1055">
+  <div id="saveToast" class="toast align-items-center text-dark border-0" role="alert" data-bs-delay="2500">
+    <div class="d-flex">
+      <div class="toast-body">
+        Pet info saved successfully!
+      </div>
+      <button type="button" class="btn-close btn-close-dark me-2 m-auto" data-bs-dismiss="toast"></button>
+    </div>
+  </div>
+</div>
+<script>
+    const dailyTips = [
+  { title: "Daily Walks", desc: "30 mins daily exercise for dogs.", category: "Exercise" },
+  { title: "Balanced Diet", desc: "Feed pets per breed & age.", category: "Nutrition" },
+  { title: "Regular Grooming", desc: "Brush and bathe to prevent skin issues.", category: "Grooming" },
+  { title: "Vaccination", desc: "Keep shots up-to-date.", category: "Health" }
+];
+
+const tipsContainer = document.getElementById('petTipsContainer');
+
+dailyTips.forEach(tip => {
+    const div = document.createElement('div');
+    div.className = 'col-md-4 mb-4';
+    div.innerHTML = `
+      <div class="tip-card p-3 h-100 shadow-sm rounded-3">
+        <h5>${tip.title}</h5>
+        <p>${tip.desc}</p>
+        <span class="badge bg-success">${tip.category}</span>
+      </div>
+    `;
+    tipsContainer.appendChild(div);
+});
+
+</script>
+<script>
+function showToast(message) {
+  const toastEl = document.getElementById('saveToast');
+  toastEl.querySelector('.toast-body').textContent = message;
+  const toast = new bootstrap.Toast(toastEl);
+  toast.show();
+}
+
+// Example on pet save
+document.getElementById('petForm').addEventListener('submit', e => {
+    e.preventDefault();
+    showToast("Your pet info has been saved! Keep up the great care.");
+});
+
+
+
+
+    // Example: Open modal with custom message
+// function showModal(message) {
+//     const modalMessage = document.getElementById('modalMessage');
+//     modalMessage.textContent = message;
+//     const modal = new bootstrap.Modal(document.getElementById('dashboardModal'));
+//     modal.show();
+// }
+
+// // Example usage on pet form submit
+// document.getElementById('petForm').addEventListener('submit', e => {
+//     e.preventDefault();
+//     // Save logic here
+//     showModal("Your pet info has been saved! Keep caring for your pet.");
+// });
+
+</script>
 <script>// ===============================
 // OWNER.JS — FurEver Care Dashboard (Enhanced)
 // ===============================
@@ -1021,17 +1242,6 @@ document.addEventListener('click', function(e){
         sortPriceBtn.textContent = `Sort by Price ${sortAsc ? "↑" : "↓"}`;
     });
 
-    // // --------------------------
-    // // STICKY GEO CLOCK
-    // // --------------------------
-    // const geoClockSticky = document.getElementById("geoClockSticky");
-    // function updateClock() {
-    //     const now = new Date();
-    //     geoClockSticky.textContent = now.toLocaleString("en-US", { dateStyle: "medium", timeStyle: "medium" });
-    // }
-    // setInterval(updateClock, 1000);
-    // updateClock();
-
 });
 // Filter tips by animal type (optional)
 const tipButtons = document.querySelectorAll('.animal-btn');
@@ -1093,14 +1303,17 @@ const observer = new IntersectionObserver(entries => {
 
 elements.forEach(el => observer.observe(el));
 </script>
-
+<!-- Footer -->
 <footer class="lux-footer mt-4">
 <div class="container text-center">
+
 <div class="footer-logo-wrap mb-2">
 <h3 class="footer-brand-text mt-1">FurEver Care</h3>
 <p class="footer-tagline">"Caring for pets, anytime, anywhere."</p>
 </div>
+
 <div class="row justify-content-center">
+
 <div class="col-md-3 col-6 mb-3">
 <h6 class="footer-heading">Pet Care</h6>
 <ul class="list-unstyled footer-links">
@@ -1116,16 +1329,16 @@ elements.forEach(el => observer.observe(el));
 <li><a href="emergency.html">Emergency</a></li>
 <li><a href="index.html#about">About Us</a></li>
 <li><a href="contact.html">Contact</a></li>
-<li><a href="emergency.html#first-aid-tips">Pet Tips</a></li>
+<li><a href="owner.html#pet-tips">Pet Tips</a></li>
 </ul>
 </div>
 <div class="col-md-3 col-6 mb-3">
 <h6 class="footer-heading">Community</h6>
 <ul class="list-unstyled footer-links">
 <li><a href="vet.html#faq">Blogs</a></li>
-<li><a href="shelter.html#suc">Success Stories</a></li>
-<li><a href="contact.html">Adoption Drives</a></li>
-<li><a href="shelter.html#ev">Events</a></li>
+<li><a href="shelter.html#testimonials">Success Stories</a></li>
+<li><a href="shelter.html#adoption-process">Adoption Drives</a></li>
+<li><a href="shelter.html#testimonials">Events</a></li>
 </ul>
 </div>
 <div class="col-md-3 col-6 mb-3">
@@ -1144,6 +1357,7 @@ elements.forEach(el => observer.observe(el));
 <div class="footer-bottom mt-2">
 <p>&copy; 2025 FurEver Care. All Rights Reserved.</p>
 </div>
+
 </div>
 </footer>
 <script>
@@ -1181,31 +1395,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 </script>
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  // ---------------- CLOCK & LOCATION ----------------
-  const clockEl = document.getElementById("clock");
-  const locEl = document.getElementById("location");
-
-  setInterval(() => {
-    const now = new Date();
-    if (clockEl) clockEl.textContent = now.toLocaleTimeString();
-  }, 1000);
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      pos => {
-        if (locEl) locEl.textContent = `Lat: ${pos.coords.latitude.toFixed(2)}, Long: ${pos.coords.longitude.toFixed(2)}`;
-      },
-      () => {
-        if (locEl) locEl.textContent = "Location unavailable";
-      }
-    );
-  }
-
-  
-});
-</script>
 
 <script>
   AOS.init({
@@ -1215,5 +1404,7 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/aos.js"></script>
+<script src="js/script.js"></script>
+
 </body>
 </html>

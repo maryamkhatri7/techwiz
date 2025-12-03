@@ -8,24 +8,138 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/aos.css"><!--AOS -->
     <link rel="stylesheet" href="css/style.css">
+  </head>
+ <style>
 
-</head>
+/* 
+   #form-container{
+margin-top: -80px!important;  } 
+ */
+
+/* ---------------- LUXURY HERO ---------------- */
+.home-hero {
+    position: relative;
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 0 20px;
+    color: #FBF6F4; /* luxury cream text */
+}
+
+/* Background image with subtle blur */
+.home-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+    filter: blur(3px) brightness(0.7);
+    z-index: 0;
+}
+
+/* Inner text wrapper */
+.home-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 900px;
+    width: 90%;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: slideUpFade 1s forwards;
+}
+
+/* Hero title */
+.home-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    margin-bottom: 15px;
+    color: #FBF6F4;
+    text-shadow: 0 6px 20px rgba(1,20,60,0.5);
+}
+
+/* Hero subtitle */
+.home-hero-sub {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: #F6CFAB; /* soft gold accent */
+    margin-bottom: 30px;
+    line-height: 1.4;
+    text-shadow: 0 4px 12px rgba(1,20,60,0.4);
+}
+
+/* CTA Buttons - clean and elegant */
+.btn-hero, .btn-hero-outline {
+    padding: 14px 36px;
+    font-size: 1rem;
+    border-radius: 50px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin: 10px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Solid button - gold */
+.btn-hero {
+    background: #C7A57A;
+    color: #01143C;
+    border: 2px solid rgba(1,20,60);
+}
+
+.btn-hero:hover {
+    background: #b89966;
+}
+
+/* Outline button - cream text */
+.btn-hero-outline {
+    border: 2px solid rgba(1,20,60);
+    background: transparent;
+    color: #FBF6F4;
+}
+
+.btn-hero-outline:hover {
+    background: #FBF6F4;
+    color: #01143C;
+}
+
+/* Slide-up animation */
+@keyframes slideUpFade {
+    0% { opacity: 0; transform: translateY(40px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .home-hero-inner { max-width: 85%; }
+    .home-hero-title { font-size: clamp(2.2rem, 4.5vw, 3rem); }
+    .home-hero-sub { font-size: clamp(0.9rem, 1.8vw, 1.2rem); }
+}
+@media (max-width: 768px) {
+    .home-hero-title { font-size: 2rem; }
+    .home-hero-sub { font-size: 1rem; }
+    .btn-hero, .btn-hero-outline { width: 100%; margin: 6px 0; }
+}
+
+</style>
 <body>
-
 <!-- Top Bar -->
-<div id="top-bar" style="display:none; justify-content:space-between; padding:10px 20px; background:#F7E9D4;">
-<div id="user-welcome" style="    font-size: clamp(0.7rem, 1.1vw, 0.85rem);
-">Hi, <span id="user-name-display"></span>!
+<div id="top-bar" style="display:none; justify-content:space-between; padding:10px 20px; ">
+
+<div id="user-welcome" style="font-size:clamp(0.7rem,1.1vw,0.85rem);">Hi, <span id="user-name-display"></span>!
     <small style="color: rgb(246,203,166); font-weight: bold;">(Visited <span id="visit-count"></span> times)</small>
 </div>
 <div id="clock-location">
   <span id="clock"></span>
   <span id="location"></span>
 </div>
-<!-- 
-<div id="clock-location">
-<span id="clock"></span> | <span id="location"></span>
-</div> -->
+
 </div>
 <nav class="navbar navbar-expand-xl sticky-top">
   <div class="container-fluid">
@@ -71,14 +185,65 @@
     </div>
   </div>
 </nav>
-<script>
-const currentPage = window.location.pathname.split("/").pop();
-document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
-    if(link.getAttribute("href") === currentPage){ link.classList.add("active"); }
-});
-</script>
 
-  <section id="form-container">
+<!-- Main section that holds the entry form -->
+<section id="form-container" data-aos="zoom-in">
+
+    <!-- Wrapper to center and style the form box -->
+    <div class="form-wrapper">
+
+        <!-- Title area of the welcome box -->
+        <div class="form-title">
+            <h1>Welcome to <span class="brand">FurEver Care</span></h1>
+            <!-- Small description under the heading -->
+            <p>Where pets, owners, vets & shelters come together 🐾</p>
+        </div>
+
+        <!-- Actual form where user enters their information -->
+        <form id="user-form">
+
+            <!-- Input group for first name -->
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <!-- Text input for user's first name -->
+                <input type="text" id="firstName" class="form-control" placeholder="Enter your first name" required>
+            </div>
+
+            <!-- User type selection group -->
+            <div class="form-group">
+                <label>I am a:</label>
+
+                <!-- Container for radio button options -->
+                <div class="user-type-group">
+
+                    <!-- Individual option: Pet Owner -->
+                    <label class="user-type-option">
+                        <input type="radio" name="userType" value="Pet Owner" required>
+                        <span>Pet Owner</span>
+                    </label>
+
+                    <!-- Individual option: Veterinarian -->
+                    <label class="user-type-option">
+                        <input type="radio" name="userType" value="Veterinarian">
+                        <span>Veterinarian</span>
+                    </label>
+
+                    <!-- Individual option: Shelter -->
+                    <label class="user-type-option">
+                        <input type="radio" name="userType" value="Shelter">
+                        <span>Shelter</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Submit button that takes user inside the website -->
+            <button type="submit" class="btn-submit">Enter FurEver Care</button>
+
+        </form>
+    </div>
+</section>
+
+  <!-- <section id="form-container">
     <div class="form-wrapper">
       <div class="form-title">
         <h1>Welcome to <span class="brand">FurEver Care</span></h1>
@@ -112,33 +277,29 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
         <button type="submit" class="btn-submit">Enter FurEver Care</button>
       </form>
     </div>
-  </section>
+  </section> -->
 
   <main id="main-site" style="display:none; opacity:0; transition: opacity 0.6s ease;">
-    <!-- Hero Section -->
-    <section id="home-hero" class="home-hero" 
-      style="background: url('https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1500&q=80') 
-      no-repeat center center/cover;">
 
-      <div class="home-hero-overlay"></div>
-      <div class="home-hero-inner container text-center">
-        <h1 class="home-hero-title"   data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-out-cubic">Welcome to FurEver Care</h1>
-        <p class="home-hero-sub" data-aos="fade-up" 
-        data-aos-delay="400" 
-        data-aos-duration="1000" 
-        data-aos-easing="ease-out-cubic">Where pets, owners, vets & shelters come together 🐾</p>
-        <div class="home-hero-ctas mt-3">
-          <a class="btn-hero" href="owner.html"  data-aos="zoom-in" 
-         data-aos-delay="600" 
-         data-aos-duration="900">I'm a Pet Owner</a>
-          <a class="btn-hero-outline" href="vet.html"  data-aos="zoom-in" 
-         data-aos-delay="800" 
-         data-aos-duration="900">I'm a Veterinarian</a>
-          <a class="btn-hero-outline" href="shelter.html"  data-aos="zoom-in" 
-         data-aos-delay="1000" 
-         data-aos-duration="900">I'm a Shelter</a>
-        </div>
-      </div>
+      <section id="home-hero" class="home-hero" 
+  style="background: url('images/homein.jpg') 
+  no-repeat center center/cover; position: relative;">
+
+  <div class="home-hero-inner container text-center">
+    <h1 class="home-hero-title" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
+      Welcome to FurEver Care
+    </h1>
+    <p class="home-hero-sub" data-aos="fade-up" data-aos-delay="400" data-aos-duration="1000" data-aos-easing="ease-out-cubic">
+      Where pets, owners, vets & shelters come together 🐾
+    </p>
+    <div class="home-hero-ctas mt-3">
+      <a class="btn-hero" href="owner.html" data-aos="zoom-in" data-aos-delay="600" data-aos-duration="900">I'm a Pet Owner</a>
+      <a class="btn-hero-outline" href="vet.html" data-aos="zoom-in" data-aos-delay="800" data-aos-duration="900">I'm a Veterinarian</a>
+      <a class="btn-hero-outline" href="shelter.html" data-aos="zoom-in" data-aos-delay="1000" data-aos-duration="900">I'm a Shelter</a>
+    </div>
+  </div>
+</section>
+
     </section>
 
 <section class="aboutus" id="about">
@@ -148,7 +309,7 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
       <!-- Image Column -->
       <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1200" >
         <div class="aboutus-image ">
-          <img src="images/about" alt="FurEver Care Team img-fluid">
+          <img src="images/about.jpg" alt="FurEver Care Team img-fluid">
         </div>
       </div>
 
@@ -179,7 +340,7 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
 </section>
 <!-- Services Cards Section -->
 <section class="services py-5" id="services">
-  <div class="container">
+  <div class="container" >
     <div class="text-center mb-5" data-aos="fade-up">
       <h2 class="services-title">Our Premium Services</h2>
       <p class="services-sub">Luxury care tailored for every pet & their human 🐾</p>
@@ -187,33 +348,36 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
     <div class="row g-4">
       <!-- Card 1 -->
       <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="200">
+       <a href="vet.html#vetFormSection" class="text-decoration-none">
         <div class="service-card h-100">
           <div class="icon-wrap">
             <i class="fa-solid fa-stethoscope"></i>
           </div>
           <h5>Veterinary Care</h5>
           <p>Expert consultations and holistic treatments for your pets’ health and happiness.</p>
-        </div>
+        </div></a>
       </div>
       <!-- Card 2 -->
       <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="400">
+               <a href="shelter.html#available-pets" class="text-decoration-none">
         <div class="service-card h-100">
           <div class="icon-wrap">
             <i class="fa-solid fa-heart"></i>
           </div>
           <h5>Adoption Services</h5>
           <p>Connecting loving homes with pets in need — because every pet deserves a family.</p>
-        </div>
+        </div></a>
       </div>
       <!-- Card 3 -->
       <div class="col-md-6 col-lg-4" data-aos="zoom-in" data-aos-delay="600">
+      <a href="products.html#products" class="text-decoration-none">
         <div class="service-card h-100">
           <div class="icon-wrap">
             <i class="fa-solid fa-bone"></i>
           </div>
           <h5>Premium Products</h5>
           <p>Curated toys, food, and accessories designed for quality, comfort, and style.</p>
-        </div>
+        </div></a>
       </div>
     </div>
   </div>
@@ -223,11 +387,14 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
 <!-- Footer -->
 <footer class="lux-footer mt-4">
 <div class="container text-center">
+
 <div class="footer-logo-wrap mb-2">
 <h3 class="footer-brand-text mt-1">FurEver Care</h3>
 <p class="footer-tagline">"Caring for pets, anytime, anywhere."</p>
 </div>
+
 <div class="row justify-content-center">
+
 <div class="col-md-3 col-6 mb-3">
 <h6 class="footer-heading">Pet Care</h6>
 <ul class="list-unstyled footer-links">
@@ -243,16 +410,16 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
 <li><a href="emergency.html">Emergency</a></li>
 <li><a href="index.html#about">About Us</a></li>
 <li><a href="contact.html">Contact</a></li>
-<li><a href="emergency.html#first-aid-tips">Pet Tips</a></li>
+<li><a href="owner.html#pet-tips">Pet Tips</a></li>
 </ul>
 </div>
 <div class="col-md-3 col-6 mb-3">
 <h6 class="footer-heading">Community</h6>
 <ul class="list-unstyled footer-links">
 <li><a href="vet.html#faq">Blogs</a></li>
-<li><a href="shelter.html#suc">Success Stories</a></li>
-<li><a href="#">Adoption Drives</a></li>
-<li><a href="#">Events</a></li>
+<li><a href="shelter.html#testimonials">Success Stories</a></li>
+<li><a href="shelter.html#adoption-process">Adoption Drives</a></li>
+<li><a href="shelter.html#testimonials">Events</a></li>
 </ul>
 </div>
 <div class="col-md-3 col-6 mb-3">
@@ -271,113 +438,14 @@ document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
 <div class="footer-bottom mt-2">
 <p>&copy; 2025 FurEver Care. All Rights Reserved.</p>
 </div>
+
 </div>
 </footer>
 
 <script src="js/bootstrap.bundle.min.js"></script>
 <script src="js/aos.js"></script>
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const form = document.getElementById('user-form');
-  const formContainer = document.getElementById('form-container');
-  const mainContent = document.getElementById('main-site');
-  const topBar = document.getElementById('top-bar');
-  const navbar = document.querySelector('.navbar');
-  const footer = document.querySelector('footer');
+<script src="js/script.js"></script>
 
-  function showMain(firstName, userType, isReturning = false) {
-    formContainer.style.display = 'none';
-
-    // ✅ only show these after form is done
-    if (topBar) topBar.style.display = 'flex';
-    if (navbar) navbar.style.display = 'block';
-    if (footer) footer.style.display = 'block';
-
-    mainContent.style.display = 'block';
-    mainContent.style.opacity = '1';
-
-    const heroTitle = document.querySelector('.home-hero-title');
-    if (heroTitle) {
-      heroTitle.innerHTML = `${isReturning ? 'Welcome back' : 'Welcome'}, ${firstName}! <br>
-        <small>We're glad to have our favorite ${userType} here</small>`;
-    }
-
-    const userNameDisplay = document.getElementById('user-name-display');
-    if (userNameDisplay) userNameDisplay.textContent = firstName;
-  }
-
-  // Check localStorage
-  const storedName = localStorage.getItem('userFirstName');
-  const storedType = localStorage.getItem('userType');
-  if (storedName && storedType) {
-    showMain(storedName, storedType, true);
-  } else {
-    // ✅ hide nav + footer until user submits
-    if (topBar) topBar.style.display = 'none';
-    if (navbar) navbar.style.display = 'none';
-    if (footer) footer.style.display = 'none';
-  }
-
-  // On form submit
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const firstName = document.getElementById('firstName').value;
-    const userType = document.querySelector('input[name="userType"]:checked').value;
-
-    localStorage.setItem('userFirstName', firstName);
-    localStorage.setItem('userType', userType);
-
-    formContainer.style.opacity = '0';
-    formContainer.style.transform = 'translateY(-20px)';
-    setTimeout(() => showMain(firstName, userType), 500);
-  });
-});
-</script>
-
-<script>
-  // CLOCK
-  function updateClock() {
-    const now = new Date();
-    const clockEl = document.getElementById("clock");
-    if (clockEl) {
-      clockEl.textContent = now.toLocaleTimeString();
-    }
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-
-  // GEOLOCATION
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      (pos) => {
-        const locEl = document.getElementById("location");
-        if (locEl) {
-          locEl.textContent = `Lat: ${pos.coords.latitude.toFixed(2)}, Long: ${pos.coords.longitude.toFixed(2)}`;
-        }
-      },
-      () => {
-        const locEl = document.getElementById("location");
-        if (locEl) {
-          locEl.textContent = "Location not available";
-        }
-      }
-    );
-  }
-// Track number of visits
-let visitCount = localStorage.getItem("visitCount") || 0;
-visitCount = parseInt(visitCount) + 1;
-localStorage.setItem("visitCount", visitCount);
-
-// After incrementing visitCount
-const visitEl = document.getElementById("visit-count");
-if (visitEl) visitEl.textContent = visitCount;
-
-  // AOS (Animate on Scroll)
-  AOS.init({
-    once: false,
-    duration: 800,
-  });
-</script>
 
 </body>
 </html>
